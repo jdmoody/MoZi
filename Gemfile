@@ -26,6 +26,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'figaro'
 
 group :development do
   gem 'annotate'
