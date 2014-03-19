@@ -1,1 +1,5 @@
 <h1>Home Page!</h1>
+<% @games.each do |game| %>
+  <%= link_to (image_tag game.box), games_path(game) %>
+  Viewers: <%= game.viewers%>
+<% end %>

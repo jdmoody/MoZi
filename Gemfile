@@ -37,3 +37,5 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
 end
+
+gem 'twitch', '= 0.0.2'
