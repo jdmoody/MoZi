@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    Game.refresh
-    @games = Game.all
+    # redirect_to games_path
   end
 end

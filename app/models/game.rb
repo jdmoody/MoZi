@@ -12,6 +12,9 @@
 #
 
 class Game < ActiveRecord::Base
+  default_scope order('viewers DESC')
+  
+  has_many :streams, foreign_key: :game, primary_key: :name
   
   def self.refresh
     @games = Twitch.new().getTopGames()[:body]["top"]
@@ -31,8 +34,9 @@ class Game < ActiveRecord::Base
   end
   
   def ordered_stream_list
-    streams = Stream.fetch_by_game(self.name)
-    
-    
+    Stream.fetch_by_game(self.name)
+    Stream.where(game: self.name).sort do |stream1, stream2|
+      stream2.viewers <=> stream1.viewers
+    end.slice(0...10)
   end
 end

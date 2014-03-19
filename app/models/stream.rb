@@ -10,10 +10,12 @@
 #  viewers      :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  preview      :string(255)
 #
 
 class Stream < ActiveRecord::Base
-  def fetch_by_name(game)
+  
+  def self.fetch_by_game(game)
     streams = Twitch.new().getStreams(game: game)[:body]["streams"]
     
     streams.each do |stream|
@@ -25,6 +27,7 @@ class Stream < ActiveRecord::Base
           channel_name: stream["channel"]["name"],
           logo: stream["channel"]["logo"],
           game: stream["game"],
+          preview: stream["preview"]["medium"],
           viewers: stream["viewers"]
         })
       end
