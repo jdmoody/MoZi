@@ -17,9 +17,3 @@ test:
   database: mozi_test_db
   pool: 5
   timeout: 5000
-
-production:
-  adapter: postgresql
-  database: mozi_prod_db
-  pool: 5
-  timeout: 5000
