@@ -30,6 +30,8 @@ end
 
 gem 'devise'
 gem 'figaro'
+gem 'pusher'
+gem 'pusher-client'
 
 group :development do
   gem 'annotate'

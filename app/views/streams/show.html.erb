@@ -22,3 +22,50 @@
   <%= link_to "Follow #{@stream.name}", follow_path(@stream) %><br>
 <% end %>
 <%= link_to "Back to #{@game.name} Streams", game_path(@game) %>
+
+<h1><%= @stream.name %> Chat!</h1>
+
+<form id="message">
+  <%= auth_token %>
+  
+  <input type="hidden" name="stream[name]" 
+         value="<%= request.env['PATH_INFO'] %>">
+  
+  <label>Message:
+    <input type="text" name="message[text]" id="message-box">
+  </label>
+
+  <button>Send</button>
+</form>
+
+<h3>Chats</h3>
+<div id="display"></div>
+
+<script>
+  var path = "<%= request.env['PATH_INFO'] %>"
+             .substring(1)
+             .replace("/", "-")
+             
+  $("form#message").on("submit", function(event) {
+    event.preventDefault();
+    
+    var $chatbox = $(event.currentTarget).find("input#message-box");
+    var msg = $chatbox.val();
+    $chatbox.val("");
+    
+    $.ajax({
+      type: "POST",
+      url: "/chat",
+      data: {text: msg, stream: path},
+      success: function(response) {}
+    });
+  });
+  
+  var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
+  var channel = pusher.subscribe(path);
+  channel.bind("message", function(data) {
+    var $el = $('<p></p>');
+    $el.text(data.user + ": " + data.message)
+    $("#display").append($el);
+  });
+</script>

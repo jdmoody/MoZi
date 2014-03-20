@@ -82,6 +82,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     hike (1.2.3)
+    httpclient (2.3.4.1)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -106,6 +107,12 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    pusher (0.12.0)
+      httpclient (~> 2.3.0)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
+    pusher-client (0.4.0)
+      websocket (~> 1.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -141,6 +148,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    signature (0.1.7)
     slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -168,6 +176,7 @@ GEM
     underscore-rails (1.6.0)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket (1.0.7)
 
 PLATFORMS
   ruby
@@ -186,6 +195,8 @@ DEPENDENCIES
   jquery-rails
   pg
   pry-rails
+  pusher
+  pusher-client
   rails (= 4.0.3)
   rails_12factor
   sass-rails (~> 4.0.0)
