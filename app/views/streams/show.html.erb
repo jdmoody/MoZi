@@ -17,4 +17,8 @@
           value="hostname=www.twitch.tv&channel=<%= @stream.channel_name %>&auto_play=true&start_volume=25" />
 </object>
 <br>
+<% current_user %>
+<% if current_user && !current_user.followed_streams.include?(@stream) %>
+  <%= link_to "Follow #{@stream.name}", follow_path(@stream) %><br>
+<% end %>
 <%= link_to "Back to #{@game.name} Streams", game_path(@game) %>

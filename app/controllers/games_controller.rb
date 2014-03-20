@@ -10,8 +10,8 @@ class GamesController < ApplicationController
   end
   
   def favorite
-    @game = Game.find(params[:id])
-    @game.game_favorites.create(user_id: current_user.id)
+    game = Game.find(params[:id])
+    game.game_favorites.create(user_id: current_user.id)
     flash[:notice] = "#{@game.name} added to your favorites!"
     redirect_to games_path
   end

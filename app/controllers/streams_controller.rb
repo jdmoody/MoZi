@@ -5,7 +5,9 @@ class StreamsController < ApplicationController
   end
   
   def follow
-    @stream = Stream.find(params[:id])
-    @stream.follows.create(user_id: current_user.id)
+    stream = Stream.find(params[:id])
+    stream.stream_follows.create(user_id: current_user.id)
+    flash[:notice] = "You are now following #{stream.name}"
+    redirect_to stream_path(stream)
   end
 end
