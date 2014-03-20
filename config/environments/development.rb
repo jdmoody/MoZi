@@ -28,4 +28,8 @@ MoZi::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  
+  Pusher.app_id = ENV["PUSHER_APP_ID"]
+  Pusher.key    = ENV["PUSHER_KEY"]
+  Pusher.secret = ENV["PUSHER_SECRET"]
 end
