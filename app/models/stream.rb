@@ -11,9 +11,14 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  preview      :string(255)
+#  status       :string(255)
+#  views        :integer
+#  followers    :integer
 #
 
 class Stream < ActiveRecord::Base
+  default_scope order('viewers DESC')
+  
   has_many :stream_follows,
     class_name: "StreamFollow",
     foreign_key: :stream_id
@@ -23,15 +28,20 @@ class Stream < ActiveRecord::Base
     source: :user
   
   def self.fetch_by_game(game)
+    Stream.update_all("viewers = 0, status = ''", "game LIKE '#{game}'")
     streams = Twitch.new().getStreams(game: game)[:body]["streams"]
     
     streams.each do |stream|
       if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
-        current_stream.update_attributes(viewers: stream["viewers"])
+        current_stream.update_attributes(viewers: stream["viewers"], 
+                                         status: stream["channel"]["status"])
       else
         Stream.create!({
           name: stream["channel"]["display_name"],
           channel_name: stream["channel"]["name"],
+          status: stream["channel"]["status"],
+          views: stream["channel"]["views"],
+          followers: stream["channel"]["followers"],
           logo: stream["channel"]["logo"],
           game: stream["game"],
           preview: stream["preview"]["medium"],

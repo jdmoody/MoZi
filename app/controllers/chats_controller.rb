@@ -1,8 +1,11 @@
 class ChatsController < ApplicationController
   def message
-    chat_name = current_user ? current_user.email : "guest"
-    Pusher[params[:stream]].trigger("message",
-                   {user: chat_name, message: params[:text]})
-    head :created
+    if !!current_user
+      Pusher.trigger(params[:stream], "message",
+                     {user: current_user.username, message: params[:text]})
+      head :created
+    else
+      render json: nil
+    end
   end
 end

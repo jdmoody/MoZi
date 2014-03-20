@@ -15,9 +15,12 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  username               :string(255)
 #
 
 class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

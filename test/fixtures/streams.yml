@@ -11,6 +11,9 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  preview      :string(255)
+#  status       :string(255)
+#  views        :integer
+#  followers    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

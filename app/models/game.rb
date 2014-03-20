@@ -23,6 +23,7 @@ class Game < ActiveRecord::Base
     source: :user
   
   def self.refresh
+    Game.update_all("viewers = 0")
     @games = Twitch.new().getTopGames()[:body]["top"]
     
     @games.each do |game|
