@@ -4,5 +4,8 @@ MoZi::Application.routes.draw do
   root 'home#index'
   
   resources :games, only: [:index, :show]
-  resources :streams, only: [:show]
+  get 'game/:id/favorite', to: 'games#favorite', as: 'favorite'
+  
+  resources :streams, only: [:index, :show]
+  get 'stream/:id/follow', to: 'streams#follow', as: 'follow'
 end

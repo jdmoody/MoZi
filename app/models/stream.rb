@@ -14,6 +14,13 @@
 #
 
 class Stream < ActiveRecord::Base
+  has_many :stream_follows,
+    class_name: "StreamFollow",
+    foreign_key: :stream_id
+  
+  has_many :followers,
+    through: :stream_follows,
+    source: :user
   
   def self.fetch_by_game(game)
     streams = Twitch.new().getStreams(game: game)[:body]["streams"]

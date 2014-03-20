@@ -22,4 +22,20 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :game_favorites,
+    class_name: "GameFavorite",
+    foreign_key: :user_id
+    
+  has_many :favorite_games,
+    through: :game_favorites,
+    source: :game
+    
+  has_many :stream_follows,
+    class_name: "StreamFollow",
+    foreign_key: :user_id
+    
+  has_many :followed_streams,
+    through: :stream_follows,
+    source: :stream
 end

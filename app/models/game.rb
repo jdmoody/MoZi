@@ -14,7 +14,13 @@
 class Game < ActiveRecord::Base
   default_scope order('viewers DESC')
   
-  has_many :streams, foreign_key: :game, primary_key: :name
+  has_many :game_favorites,
+    class_name: "GameFavorite",
+    foreign_key: :game_id
+  
+  has_many :fans,
+    through: :game_favorites,
+    source: :user
   
   def self.refresh
     @games = Twitch.new().getTopGames()[:body]["top"]
