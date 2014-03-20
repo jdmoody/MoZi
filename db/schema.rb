@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140320205305) do
     t.string   "preview"
     t.string   "status"
     t.integer  "views"
-    t.integer  "followers"
+    t.integer  "follows"
   end
 
   create_table "users", force: true do |t|

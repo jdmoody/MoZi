@@ -13,7 +13,7 @@
 #  preview      :string(255)
 #  status       :string(255)
 #  views        :integer
-#  followers    :integer
+#  follows      :integer
 #
 
 class Stream < ActiveRecord::Base
@@ -34,14 +34,15 @@ class Stream < ActiveRecord::Base
     streams.each do |stream|
       if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
         current_stream.update_attributes(viewers: stream["viewers"], 
-                                         status: stream["channel"]["status"])
+                                         status: stream["channel"]["status"],
+                                         follows: stream["channel"]["followers"])
       else
         Stream.create!({
           name: stream["channel"]["display_name"],
           channel_name: stream["channel"]["name"],
           status: stream["channel"]["status"],
           views: stream["channel"]["views"],
-          followers: stream["channel"]["followers"],
+          follows: stream["channel"]["followers"],
           logo: stream["channel"]["logo"],
           game: stream["game"],
           preview: stream["preview"]["medium"],

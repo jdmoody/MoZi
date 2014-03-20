@@ -1,0 +1,8 @@
+<h3>Games Index</h3>
+
+<% games.each(function (game) { %>
+  <a href="#/games/<%= game.get("id") %>">
+    <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
+  </a>
+  <%= game.get("name") %>
+<% }) %>

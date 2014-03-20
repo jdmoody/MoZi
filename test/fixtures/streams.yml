@@ -13,7 +13,7 @@
 #  preview      :string(255)
 #  status       :string(255)
 #  views        :integer
-#  followers    :integer
+#  follows      :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

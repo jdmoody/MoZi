@@ -1,7 +1,8 @@
-class GamesController < ApplicationController
+class Api::GamesController < ApplicationController
   def index
     Game.refresh
     @games = Game.all[0...10]
+    render "games/index"
   end
   
   def show
