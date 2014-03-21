@@ -1,4 +1,4 @@
-class ChatsController < ApplicationController
+class Api::ChatsController < ApplicationController
   def message
     if !!current_user
       Pusher.trigger(params[:stream], "message",

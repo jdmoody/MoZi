@@ -32,6 +32,7 @@ gem 'devise'
 gem 'figaro'
 gem 'pusher'
 gem 'pusher-client'
+gem 'gon'
 
 group :development do
   gem 'annotate'

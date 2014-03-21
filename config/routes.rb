@@ -8,7 +8,7 @@ MoZi::Application.routes.draw do
   
     resources :streams, only: [:index, :show]
     get 'stream/:id/follow', to: 'streams#follow', as: 'follow'
-  end
   
-  post 'chat', to: 'chats#message', as: 'message'
+    post 'chat', to: 'chats#message', as: 'message'
+  end
 end
