@@ -8,6 +8,7 @@ class Api::GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @streams = @game.ordered_stream_list
+    render "games/show"
   end
   
   def favorite

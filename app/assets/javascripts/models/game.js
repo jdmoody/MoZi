@@ -1,7 +1,22 @@
 window.MoZi.Models.Game = Backbone.Model.extend({
   urlRoot: "/api/games",
   
+  streams: function () {
+    if (!this._streams) {
+      this._streams = new MoZi.Collections.Streams([], {
+        game: this
+      });
+    }
+    
+    return this._streams;
+  },
+  
   parse: function (jsonResp) {
+    if (jsonResp.streams) {
+      this.streams().set(jsonResp.streams);
+      delete jsonResp.streams;
+    }
+    
     return jsonResp;
   }
 })

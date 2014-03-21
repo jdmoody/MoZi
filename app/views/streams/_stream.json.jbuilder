@@ -1,0 +1,13 @@
+json.stream(
+  stream,
+  :id,
+  :name,
+  :channel_name,
+  :status,
+  :views,
+  :follows,
+  :logo,
+  :game,
+  :preview,
+  :viewers
+)

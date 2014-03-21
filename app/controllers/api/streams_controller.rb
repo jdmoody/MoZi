@@ -1,7 +1,8 @@
-class StreamsController < ApplicationController
+class Api::StreamsController < ApplicationController
   def show
     @stream = Stream.find(params[:id])
     @game = Game.find_by(name: @stream.game)
+    render "streams/show"
   end
   
   def follow
