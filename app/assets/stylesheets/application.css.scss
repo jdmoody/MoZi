@@ -13,3 +13,16 @@
  */
 
 @import "bootstrap";
+
+$mozi-blue: #34119C;
+
+#mozi-nav {
+  background-color: $mozi-blue;
+  ul.sessions {
+    float: right;
+  }
+}
+
+body {
+  padding-top: 50px;
+}

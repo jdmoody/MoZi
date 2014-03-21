@@ -1,7 +1,7 @@
 MoZi::Application.routes.draw do
   devise_for :users
   
-  root 'home#index'
+  root 'root#root'
   namespace :api, defaults: { format: :json } do
     resources :games, only: [:index, :show]
     get 'game/:id/favorite', to: 'games#favorite', as: 'favorite'

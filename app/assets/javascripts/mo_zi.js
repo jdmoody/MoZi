@@ -4,7 +4,13 @@ window.MoZi = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new MoZi.Routers.AppRouter();
+    var moziRouter = new MoZi.Routers.AppRouter({
+      $rootEl: $("#content")
+    });
+    
+    new MoZi.Views.NavShow({
+      router: moziRouter
+    });
     
     Backbone.history.start();
   }

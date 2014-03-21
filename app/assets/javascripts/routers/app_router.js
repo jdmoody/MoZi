@@ -1,4 +1,8 @@
 window.MoZi.Routers.AppRouter = Backbone.Router.extend({
+  initialize: function (options) {
+    this.$rootEl = options.$rootEl
+  },
+  
   routes: {
     "games": "gamesIndex",
     "games/:id": "gameShow",
@@ -48,6 +52,6 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     }
     this.currentView = view;
     
-    $("body").html(view.render().$el);
+    this.$rootEl.html(view.render().$el);
   }
 })
