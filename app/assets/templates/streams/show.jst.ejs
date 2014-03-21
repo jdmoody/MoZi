@@ -31,33 +31,3 @@
 
 <h3>Chats</h3>
 <div id="display"></div>
-
-<script>
-  var path = window.location.hash
-             .substring(2)
-             .split("/")
-             .join("-")
-             
-  $("form#message").on("submit", function(event) {
-    event.preventDefault();
-    
-    var $chatbox = $(event.currentTarget).find("input#message-box");
-    var msg = $chatbox.val();
-    $chatbox.val("");
-    
-    $.ajax({
-      type: "POST",
-      url: "/api/chat",
-      data: {text: msg, stream: path},
-      success: function(response) {}
-    });
-  });
-  
-  var pusher = new Pusher(gon.global.pusher_key);
-  var channel = pusher.subscribe(path);
-  channel.bind("message", function(data) {
-    var $el = $('<p></p>');
-    $el.text(data.user + ": " + data.message)
-    $("#display").append($el);
-  });
-</script>

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require bootstrap
 //= require mo_zi
 //= require_tree ./models
 //= require_tree ./collections
