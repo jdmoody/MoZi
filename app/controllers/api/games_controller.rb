@@ -2,6 +2,9 @@ class Api::GamesController < ApplicationController
   def index
     Game.refresh
     @games = Game.all[0...10]
+    @game_favorites = current_user.game_favorites.map do |game_favorite|
+      game_favorite.game_id
+    end
     render "games/index"
   end
   
@@ -12,9 +15,17 @@ class Api::GamesController < ApplicationController
   end
   
   def favorite
-    game = Game.find(params[:id])
-    game.game_favorites.create(user_id: current_user.id)
-    flash[:notice] = "#{game.name} added to your favorites!"
-    redirect_to games_path
+    @game = Game.find(params[:id])
+    @game.game_favorites.create(user_id: current_user.id)
+    flash[:notice] = "#{@game.name} added to your favorites!"
+    
+    head :ok
+  end
+  
+  def unfavorite
+    @game = Game.find(params[:id])
+    @game.game_favorites.where(user_id: current_user.id).destroy_all
+    
+    head :ok
   end
 end

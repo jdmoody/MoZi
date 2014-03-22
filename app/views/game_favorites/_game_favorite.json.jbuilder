@@ -1,0 +1,3 @@
+json.gameFavorites(
+  gameFavorites,
+)

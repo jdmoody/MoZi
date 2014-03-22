@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
+//= require jquery.grid-a-licious.min
 //= require mo_zi
 //= require_tree ./models
 //= require_tree ./collections

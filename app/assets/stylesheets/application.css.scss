@@ -23,6 +23,14 @@ $mozi-blue: #34119C;
   }
 }
 
+#games {
+  .game{
+    .game-text{
+      text-align: center;
+    }
+  }
+}
+
 body {
   padding-top: 50px;
 }

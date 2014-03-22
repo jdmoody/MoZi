@@ -4,7 +4,8 @@ MoZi::Application.routes.draw do
   root 'root#root'
   namespace :api, defaults: { format: :json } do
     resources :games, only: [:index, :show]
-    get 'game/:id/favorite', to: 'games#favorite', as: 'favorite'
+    post 'game/:id/favorite', to: 'games#favorite', as: 'favorite'
+    delete 'game/:id/unfavorite', to: 'games#unfavorite', as: 'unfavorite'
   
     resources :streams, only: [:index, :show]
     get 'stream/:id/follow', to: 'streams#follow', as: 'follow'

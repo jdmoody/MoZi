@@ -17,6 +17,10 @@ window.MoZi.Models.Game = Backbone.Model.extend({
       delete jsonResp.streams;
     }
     
+    if (jsonResp.gameFavorites) {
+      this.userFavorites = jsonResp.gameFavorites;
+    }
+    
     return jsonResp;
   }
 })

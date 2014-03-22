@@ -6,3 +6,8 @@ unless streams.nil?
     json.partial!("streams/stream", stream: stream)
   end
 end
+
+gameFavorites ||= nil
+unless gameFavorites.nil?
+  json.partial!("game_favorites/game_favorite", gameFavorites: gameFavorites)
+end

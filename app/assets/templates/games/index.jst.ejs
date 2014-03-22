@@ -1,8 +1,29 @@
 <h3>Games Index</h3>
 
-<% games.each(function (game) { %>
-  <a href="#/games/<%= game.get("id") %>">
-    <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
-  </a>
-  <%= game.get("name") %>
-<% }) %>
+<div id="games">
+  <% games.each(function (game) { %>
+    <div class="game">
+      <a href="#/games/<%= game.get("id") %>">
+        <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
+      </a>
+      <div class="game-text">
+        Viewers: <%= game.get("viewers")%><br>
+        <% if (_.contains(game.userFavorites, game.get("id"))) { %>
+          <a href="#" class="unfavorite" 
+             data-id="<%= game.get("id") %>">Unfavorite</a>
+        <% } else { %>
+          <a href="#" class="favorite" 
+             data-id="<%= game.get("id") %>">Favorite</a>
+        <% } %>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<script>
+  $("#games").gridalicious({
+    selector: '.game',
+    gutter: 35,
+    width: 200
+  });
+</script>
