@@ -23,24 +23,30 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   addFavorite: function (event) {
     event.preventDefault();
     
+    var indexView = this;
+    
     $.ajax({
       type: "POST",
       url: "/api/game/" + $(event.currentTarget).data("id") + "/favorite",
+      success: function () {
+        indexView.collection.fetch();
+      }
     });
     
-    this.collection.fetch();
-    this.render();
+
   },
   
   removeFavorite: function (event) {
     event.preventDefault();
     
+    var indexView = this;
+    
     $.ajax({
       type: "DELETE",
       url: "/api/game/" + $(event.currentTarget).data("id") + "/unfavorite",
+      success: function () {
+        indexView.collection.fetch();
+      }
     });
-    
-    this.collection.fetch();
-    this.render();
   }
 });

@@ -19,13 +19,13 @@ class Api::GamesController < ApplicationController
     @game.game_favorites.create(user_id: current_user.id)
     flash[:notice] = "#{@game.name} added to your favorites!"
     
-    head :ok
+    render "games/index"
   end
   
   def unfavorite
     @game = Game.find(params[:id])
     @game.game_favorites.where(user_id: current_user.id).destroy_all
     
-    head :ok
+    render "games/index"
   end
 end

@@ -1,4 +1,4 @@
-<h3>Games Index</h3>
+<h3 id="game-index-title">Find Streams by Game</h3>
 
 <div id="games">
   <% games.each(function (game) { %>
@@ -8,6 +8,7 @@
       </a>
       <div class="game-text">
         Viewers: <%= game.get("viewers")%><br>
+
         <% if (_.contains(game.userFavorites, game.get("id"))) { %>
           <a href="#" class="unfavorite" 
              data-id="<%= game.get("id") %>">Unfavorite</a>
@@ -24,6 +25,6 @@
   $("#games").gridalicious({
     selector: '.game',
     gutter: 35,
-    width: 200
+    width: 230
   });
 </script>
