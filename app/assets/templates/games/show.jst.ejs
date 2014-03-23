@@ -1,7 +1,29 @@
 <h3><%= game.get("name") %> Streams</h3>
 
-<% game.streams().each(function (stream) { %>
-  <a href="#/games/<%= game.get("id") %>/streams/<%= stream.get("stream").id %>">
-    <%= stream.get("stream").name %><br>
-  </a>
-<% }) %>
+<div id="streams">
+  <% game.streams().each(function (stream) { %>
+    <% stream = stream.get("stream") %>
+    <div class="stream">
+      <a href="#/games/<%= game.get("id") %>/streams/<%= stream.id %>"
+         data-toggle="tooltip" title="<%= stream.status %>">
+        <img src="<%= stream.preview %>" alt="<%= stream.name %>-box">
+      </a>
+      <div class="stream-text">
+        <a href="#/games/<%= game.get("id") %>/streams/<%= stream.id %>">
+          <%= stream.name %><br>
+        </a>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<script>
+  $("#streams").gridalicious({
+    selector: '.stream',
+    gutter: 10,
+    width: 250
+  });
+  
+  $('[data-toggle="tooltip"]').tooltip();
+</script>
+

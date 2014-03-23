@@ -32,8 +32,8 @@ class Game < ActiveRecord::Base
       else
         Game.create!({
           name: game["game"]["name"],
-          logo: game["game"]["logo"]["medium"],
-          box:  game["game"]["box"]["medium"],
+          logo: game["game"]["logo"]["large"],
+          box:  game["game"]["box"]["large"],
           viewers: game["viewers"]
         })
       end

@@ -28,11 +28,35 @@ $mozi-blue: #34119C;
 }
 
 #games {
-  .game{
-    .game-text{
+  .game {
+    .game-text {
       text-align: center;
     }
   }
+}
+
+#streams {
+  .stream {
+    .stream-text {
+      text-align: center;
+    }
+    
+
+  }
+}
+
+.stream-display {
+  .chatroom {
+    #chat-display {
+      overflow-y: scroll;
+      height: 300px;
+      background-color: lightgrey;
+    }
+  }
+}
+
+.tooltip-inner {
+  max-width: 250px;
 }
 
 body {

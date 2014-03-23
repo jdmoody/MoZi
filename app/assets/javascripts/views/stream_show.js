@@ -22,6 +22,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   },
   
   setUpChat: function () {
+    var showView = this;
     this.path = window.location.hash
                .substring(2)
                .split("/")
@@ -33,7 +34,8 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
       this.channel.bind("message", function(data) {
         var $el = $('<p></p>');
         $el.text(data.user + ": " + data.message)
-        $("#display").append($el);
+        $("#chat-display").append($el);
+        showView.updateScroll();
       });
     }  
   },
@@ -56,7 +58,13 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     } else {
       var $el = $('<p></p>');
       $el.text("Slow down, speedy! You can type another message in a second")
-      $("#display").append($el);
+      $("#chat-display").append($el);
+      this.updateScroll();
     }
+  },
+  
+  updateScroll: function () {
+    var element = document.getElementById("chat-display");
+    element.scrollTop = element.scrollHeight;
   }
 })

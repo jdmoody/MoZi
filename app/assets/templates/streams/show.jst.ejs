@@ -1,33 +1,36 @@
 <h3>Stream Show!</h3>
 <h2><%= stream.name %> - <%= stream.status %></h2>
-<object type="application/x-shockwave-flash" 
-        height="378" 
-        width="620" 
-        id="live_embed_player_flash" 
-        data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%= stream.channel_name %>" 
-        bgcolor="#000000">
-  <param  name="allowFullScreen" 
-          value="true" />
-  <param  name="allowScriptAccess" 
-          value="always" />
-  <param  name="allowNetworking" 
-          value="all" />
-  <param  name="movie" 
-          value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-  <param  name="flashvars" 
-          value="hostname=www.twitch.tv&channel=<%= stream.channel_name %>&auto_play=true&start_volume=25" />
-</object>
+<div class="stream-display row">
+  <div class="stream-viewer col-md-8">
+    <object type="application/x-shockwave-flash" 
+            height="530" 
+            width="800" 
+            id="live_embed_player_flash" 
+           data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%= stream.channel_name %>" 
+            bgcolor="#000000">
+      <param  name="allowFullScreen" value="true" />
+      <param  name="allowScriptAccess" value="always" />
+      <param  name="allowNetworking" value="all" />
+      <param  name="movie" 
+              value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+      <param  name="flashvars" 
+              value="hostname=www.twitch.tv&channel=<%= stream.channel_name %>&auto_play=true&start_volume=25" />
+    </object>
+  </div>
 
-<h1><%= stream.name %> Chat!</h1>
+  <div class="chatroom col-md-4">
+    <h1>Chatroom</h1>
 
-<form id="message">
+    <h3>Chats</h3>
+    <div id="chat-display"></div>
+    
+    <form id="message">
   
-  <label>Message:
-    <input type="text" name="message[text]" id="message-box">
-  </label>
+      <label>Message:
+        <input type="text" name="message[text]" id="message-box">
+      </label>
 
-  <button>Send</button>
-</form>
-
-<h3>Chats</h3>
-<div id="display"></div>
+      <button>Send</button>
+    </form>
+  </div>
+</div>
