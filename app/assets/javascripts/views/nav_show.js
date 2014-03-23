@@ -7,10 +7,12 @@ window.MoZi.Views.NavShow = Backbone.View.extend({
   },
   
   render: function () {
-    var renderedContent = this.template();
+    if (Backbone.history.fragment !== "") {
+      var renderedContent = this.template();
     
-    $("#navbar").html(renderedContent);
+      $("#navbar").html(renderedContent);
     
-    return this;
+      return this;
+    }
   }
 })

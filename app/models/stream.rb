@@ -35,7 +35,8 @@ class Stream < ActiveRecord::Base
       if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
         current_stream.update_attributes(viewers: stream["viewers"], 
                                          status: stream["channel"]["status"],
-                                         follows: stream["channel"]["followers"])
+                                         follows: stream["channel"]["followers"],
+                                         game: stream["channel"]["game"])
       else
         Stream.create!({
           name: stream["channel"]["display_name"],

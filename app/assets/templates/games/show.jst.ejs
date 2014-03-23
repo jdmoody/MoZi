@@ -1,6 +1,7 @@
 <h3><%= game.get("name") %> Streams</h3>
 
 <div id="streams">
+  <% debugger %>
   <% game.streams().each(function (stream) { %>
     <% stream = stream.get("stream") %>
     <div class="stream">
@@ -10,8 +11,9 @@
       </a>
       <div class="stream-text">
         <a href="#/games/<%= game.get("id") %>/streams/<%= stream.id %>">
-          <%= stream.name %><br>
+          <%= stream.name %>
         </a>
+        Viewers: <%= stream.viewers %>
       </div>
     </div>
   <% }) %>

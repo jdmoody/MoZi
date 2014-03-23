@@ -4,9 +4,16 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
   },
   
   routes: {
+    "": "homeShow",
     "games": "gamesIndex",
     "games/:id": "gameShow",
     "games/:game_id/streams/:stream_id": "streamShow"
+  },
+  
+  homeShow: function () {
+    var showView = new MoZi.Views.HomeShow();
+    
+    this._swapView(showView);
   },
   
   gamesIndex: function () {
