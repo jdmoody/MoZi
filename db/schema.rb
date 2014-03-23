@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320205305) do
+ActiveRecord::Schema.define(version: 20140323090018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20140320205305) do
     t.integer  "views"
     t.integer  "follows"
   end
+
+  add_index "streams", ["channel_name"], name: "index_streams_on_channel_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -28,9 +28,14 @@ class Stream < ActiveRecord::Base
     source: :user
   
   def self.fetch_by_game(game)
+    # Resets viewers and status of games that already exist in database
     Stream.update_all("viewers = 0, status = ''", "game LIKE '#{game}'")
+    
+    # Fetches new streams from Twitch
     streams = Twitch.new().getStreams(game: game)[:body]["streams"]
     
+    # Updates database streams corresponding to those from twitch,
+    # or creates a new stream
     streams.each do |stream|
       if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
         current_stream.update_attributes(viewers: stream["viewers"], 
