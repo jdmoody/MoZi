@@ -1,6 +1,5 @@
-<h3><%= game.get("name") %> Streams</h3>
-
 <div id="streams">
+  <h3><%= game.get("name") %> Streams</h3>
   <% game.streams().each(function (stream) { %>
     <div class="stream">
       <a href="#/games/<%= game.get("id") %>/streams/<%= stream.get("id") %>"

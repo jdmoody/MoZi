@@ -56,6 +56,7 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     MoZi.Collections.games.getOrFetch(game_id, function (game) {
       game.streams().getOrFetch(stream_id, function (stream) {
         var showView = new MoZi.Views.StreamShow({
+          router: that,
           model: stream
         });
         

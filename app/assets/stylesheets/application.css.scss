@@ -36,14 +36,11 @@ $mozi-blue: #34119C;
 }
 
 #streams {
-  .stream {
-    .stream-text {
-      text-align: center;
-    }
-  }
+  text-align: center;
 }
 
 .stream-display {
+  margin-top: 30px;
   .stream-viewer {
     .stream-name {
       font-size: 35px;

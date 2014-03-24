@@ -2,7 +2,9 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   template: JST["streams/show"],
   
   initialize: function (options) {
+    this.router = options.router;
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.router, "route", this.removeChannel);
   },
   
   events: {
@@ -29,18 +31,18 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
                .substring(2)
                .split("/")
                .join("-")
-               
-    var pusher = new Pusher(gon.global.pusher_key);
-
+    
     if (!this.channel) {
-      this.channel = pusher.subscribe(this.path);
+      this.pusher = new Pusher(gon.global.pusher_key);
+      this.channel = this.pusher.subscribe(this.path);
+      this.channel.unbind("message");
       this.channel.bind("message", function(data) {
         var $el = $('<p></p>');
         $el.text(data.user + ": " + data.message)
         $("#chat-display").append($el);
         showView.updateScroll();
       });
-    }  
+    } 
   },
   
   sendChat: function (event) {
@@ -64,6 +66,11 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
       $("#chat-display").append($el);
       this.updateScroll();
     }
+  },
+  
+  removeChannel: function () {
+    this.pusher.unsubscribe(this.path);
+    this.channel = null;
   },
   
   updateScroll: function () {
