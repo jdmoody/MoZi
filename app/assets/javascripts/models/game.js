@@ -13,7 +13,7 @@ window.MoZi.Models.Game = Backbone.Model.extend({
   
   parse: function (jsonResp) {
     if (jsonResp.streams) {
-      this.streams().set(jsonResp.streams);
+      this.streams().set(jsonResp.streams, { parse: true });
       delete jsonResp.streams;
     }
 

@@ -1,1 +1,1 @@
-json.partial!("streams/stream", stream: @stream)
+json.partial!("streams/stream", stream: @stream, streamFollows: @stream_follows)

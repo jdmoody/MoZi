@@ -32,8 +32,6 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
         indexView.collection.fetch();
       }
     });
-    
-
   },
   
   removeFavorite: function (event) {

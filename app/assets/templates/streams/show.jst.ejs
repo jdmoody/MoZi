@@ -1,14 +1,22 @@
 <div class="stream-display row">
   <div class="stream-viewer col-md-8">
-    <h2><%= stream.name %></h2>
-    <div class="stream-status">
-      <h2><%= stream.status %></h2>
-    </div>
+      <%= stream.get("name") %>
+      <% if (_.contains(stream.userFollows, stream.get("id"))) { %>
+        <a href="#" class="unfollow" 
+           data-id="<%= stream.get("id") %>">Unfollow</a>
+      <% } else { %>
+        <a href="#" class="follow"
+           data-id="<%= stream.get("id") %>">Follow</a>
+      <% } %>
+    
+    <span class="stream-status">
+      <%= stream.get("status") %>
+    </span>
     <object type="application/x-shockwave-flash" 
             height="530" 
             width="800" 
             id="live_embed_player_flash" 
-           data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%= stream.channel_name %>" 
+           data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%= stream.get("channel_name") %>" 
             bgcolor="#000000">
       <param  name="allowFullScreen" value="true" />
       <param  name="allowScriptAccess" value="always" />
@@ -16,7 +24,7 @@
       <param  name="movie" 
               value="http://www.twitch.tv/widgets/live_embed_player.swf" />
       <param  name="flashvars" 
-              value="hostname=www.twitch.tv&channel=<%= stream.channel_name %>&auto_play=true&start_volume=25" />
+              value="hostname=www.twitch.tv&channel=<%= stream.get("channel_name") %>&auto_play=true&start_volume=25" />
     </object>
   </div>
 

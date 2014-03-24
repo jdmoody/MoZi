@@ -1,3 +1,3 @@
 json.gameFavorites(
-  gameFavorites,
+  gameFavorites
 )

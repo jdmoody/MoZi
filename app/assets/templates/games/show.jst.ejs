@@ -1,19 +1,17 @@
 <h3><%= game.get("name") %> Streams</h3>
 
 <div id="streams">
-  <% debugger %>
   <% game.streams().each(function (stream) { %>
-    <% stream = stream.get("stream") %>
     <div class="stream">
-      <a href="#/games/<%= game.get("id") %>/streams/<%= stream.id %>"
-         data-toggle="tooltip" title="<%= stream.status %>">
-        <img src="<%= stream.preview %>" alt="<%= stream.name %>-box">
+      <a href="#/games/<%= game.get("id") %>/streams/<%= stream.get("id") %>"
+         data-toggle="tooltip" title="<%= stream.get("status") %>">
+        <img src="<%= stream.get("preview") %>" alt="<%= stream.get("name") %>-box">
       </a>
       <div class="stream-text">
-        <a href="#/games/<%= game.get("id") %>/streams/<%= stream.id %>">
-          <%= stream.name %>
+        <a href="#/games/<%= game.get("id") %>/streams/<%= stream.get("id") %>">
+          <%= stream.get("name") %>
         </a>
-        Viewers: <%= stream.viewers %>
+        Viewers: <%= stream.get("viewers") %>
       </div>
     </div>
   <% }) %>

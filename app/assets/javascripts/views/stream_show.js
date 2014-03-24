@@ -6,12 +6,14 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   },
   
   events: {
-    "submit form#message": "sendChat"
+    "submit form#message": "sendChat",
+    "click .follow": "addFollow",
+    "click .unfollow": "removeFollow"
   },
   
   render: function () {
     var renderedContent = this.template({
-      stream: this.model.get("stream")
+      stream: this.model
     });
     
     this.$el.html(renderedContent);
@@ -29,6 +31,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
                .join("-")
                
     var pusher = new Pusher(gon.global.pusher_key);
+
     if (!this.channel) {
       this.channel = pusher.subscribe(this.path);
       this.channel.bind("message", function(data) {
@@ -66,5 +69,43 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   updateScroll: function () {
     var element = document.getElementById("chat-display");
     element.scrollTop = element.scrollHeight;
+  },
+  
+  addFollow: function (event) {
+    event.preventDefault();
+    
+    var showView = this;
+    
+    $.ajax({
+      type: "POST",
+      url: "/api/stream/" + $(event.currentTarget).data("id") + "/follow",
+      success: function () {
+        showView.switchFollowButton();
+      }
+    });
+  },
+  
+  removeFollow: function (event) {
+    event.preventDefault();
+    
+    var showView = this;
+    
+    $.ajax({
+      type: "DELETE",
+      url: "/api/stream/" + $(event.currentTarget).data("id") + "/unfollow",
+      success: function () {
+        showView.switchFollowButton();
+      }
+    });
+  },
+  
+  switchFollowButton: function () {
+    var $followLink = $(".stream-viewer a")
+    if ($followLink.attr("class") === "follow") {
+      $followLink.text("Unfollow");
+    } else {
+      $followLink.text("Follow");
+    }
+    $followLink.toggleClass("follow unfollow");
   }
 })
