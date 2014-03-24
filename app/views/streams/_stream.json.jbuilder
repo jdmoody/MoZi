@@ -1,4 +1,4 @@
-json.stream(
+json.(
   stream,
   :id,
   :name,
@@ -9,5 +9,10 @@ json.stream(
   :logo,
   :game,
   :preview,
-  :viewers
+  :viewers,
 )
+
+streamFollows ||= nil
+unless streamFollows.nil?
+  json.partial!("stream_follows/stream_follow", streamFollows: streamFollows)
+end

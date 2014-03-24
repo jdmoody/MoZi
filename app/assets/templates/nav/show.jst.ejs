@@ -14,11 +14,11 @@
         <li><a href="#/games">Games</a></li>
       </ul>
       <ul class="sessions nav navbar-nav pull-right">
-        <% if (!!gon.current_user) { %>
+        <% if (!!window.gon.current_user) { %>
           <li>
             <button class="btn dropdown-toggle" type="button" 
                     id="user-dropdown" data-toggle="dropdown">
-              <%= gon.current_user.username %>
+              <%= window.gon.current_user.username %>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu nav-navbar">

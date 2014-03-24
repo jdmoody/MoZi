@@ -17,7 +17,6 @@ class Api::GamesController < ApplicationController
   def favorite
     @game = Game.find(params[:id])
     @game.game_favorites.create(user_id: current_user.id)
-    flash[:notice] = "#{@game.name} added to your favorites!"
     
     render "games/index"
   end

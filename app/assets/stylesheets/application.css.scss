@@ -46,19 +46,30 @@ $mozi-blue: #34119C;
 .stream-display {
   .stream-viewer {
     .stream-status {
-      display: block;
+      font-size: 30px;
+      font-weight: bold;
+      display: inline-block;
+      width: 775px;
       white-space: nowrap;
-      text-overflow: ellipsis;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .chatroom {
     #chat-display {
       overflow-y: scroll;
-      height: 300px;
+      height: 500px;
       background-color: lightgrey;
     }
   }
+}
+
+#followsModalLabel {
+  text-align: center;
+}
+
+#followsModalBody {
+  text-align: center;
 }
 
 .tooltip-inner {
