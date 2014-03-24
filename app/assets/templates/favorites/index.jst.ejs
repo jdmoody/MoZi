@@ -1,0 +1,27 @@
+<div id="favorites">
+  <h1>FAVORITES INDEX YEAAAAAH</h1>
+  <% favorites.each(function (game) { %>
+    <div class="game">
+      <a href="#/games/<%= game.get("id") %>">
+        <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
+      </a>
+      <div class="game-text">
+          <a href="#" class="unfavorite" 
+             data-id="<%= game.get("id") %>"
+             data-game="<%= game.get("name") %>">Unfavorite</a>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<script>
+  $("#favorites").gridalicious({
+    selector: '.game',
+    gutter: 35,
+    width: 230,
+    animate: true,
+    animationOptions: {
+      speed: 100
+    }
+  });
+</script>

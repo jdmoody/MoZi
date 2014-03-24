@@ -27,7 +27,7 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     var indexView = this;
     
     $("#favoritesModalLabel").text($target.data("game") + " Favorited");
-    $("#favoritesModalBody").text("You've added " + $target.data("game") + " to your favorites");
+    $("#favoritesModalBody").text($target.data("game") + " has been added to your favorites");
     
     $.ajax({
       type: "POST",
@@ -45,7 +45,7 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     var indexView = this;
     
     $("#favoritesModalLabel").text($target.data("game") + " Unfavorited");
-    $("#favoritesModalBody").text("You've removed " + $target.data("game") + " from your favorites");
+    $("#favoritesModalBody").text($target.data("game") + " has been removed from your favorites");
     
     $.ajax({
       type: "DELETE",

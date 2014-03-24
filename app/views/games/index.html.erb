@@ -1,8 +1,0 @@
-<h2>Top Ten</h2>
-<% @games.each do |game| %>
-  <%= link_to (image_tag game.box), game_path(game) %>
-  Viewers: <%= game.viewers%>
-  <% if current_user && !current_user.favorite_games.include?(game) %>
-    <%= link_to "Favorite #{game.name}", favorite_path(game) %>
-  <% end %>
-<% end %>

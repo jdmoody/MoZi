@@ -21,7 +21,11 @@
   $("#streams").gridalicious({
     selector: '.stream',
     gutter: 10,
-    width: 250
+    width: 250,
+    animate: true,
+    animationOptions: {
+      speed: 100
+    }
   });
   
   $('[data-toggle="tooltip"]').tooltip();

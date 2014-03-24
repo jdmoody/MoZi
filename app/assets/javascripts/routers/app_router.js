@@ -7,7 +7,8 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     "": "homeShow",
     "games": "gamesIndex",
     "games/:id": "gameShow",
-    "games/:game_id/streams/:stream_id": "streamShow"
+    "games/:game_id/streams/:stream_id": "streamShow",
+    "favorites": "favoritesIndex"
   },
   
   homeShow: function () {
@@ -38,6 +39,16 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     
       that._swapView(showView);
     });
+  },
+  
+  favoritesIndex: function () {
+    var indexView = new MoZi.Views.FavoritesIndex({
+      collection: MoZi.Collections.favoriteGames
+    });
+    
+    MoZi.Collections.favoriteGames.fetch();
+    
+    this._swapView(indexView);
   },
   
   streamShow: function (game_id, stream_id) {

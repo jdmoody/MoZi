@@ -13,6 +13,7 @@
 
 <div class="stream-display row">
   <div class="stream-viewer col-md-8">
+    <span class="stream-name">
       <%= stream.get("name") %>
       <% if (_.contains(stream.userFollows, stream.get("id"))) { %>
         <a href="#" class="unfollow" 
@@ -21,6 +22,7 @@
         <a href="#" class="follow"
            data-id="<%= stream.get("id") %>">Follow</a>
       <% } %>
+    <span class="stream-name">
     
     <span class="stream-status">
       <%= stream.get("status") %>
@@ -43,8 +45,6 @@
 
   <div class="chatroom col-md-4">
     <h1>Chatroom</h1>
-
-    <h3>Chats</h3>
     <div id="chat-display"></div>
     
     <form id="message">

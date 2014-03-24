@@ -45,6 +45,10 @@ $mozi-blue: #34119C;
 
 .stream-display {
   .stream-viewer {
+    .stream-name {
+      font-size: 35px;
+      font-weight:bold;
+    }
     .stream-status {
       font-size: 30px;
       font-weight: bold;
@@ -56,12 +60,18 @@ $mozi-blue: #34119C;
     }
   }
   .chatroom {
+    margin-top: 35px;
     #chat-display {
       overflow-y: scroll;
       height: 500px;
       background-color: lightgrey;
+      margin-bottom: 5px;
     }
   }
+}
+
+#favorites {
+  text-align: center;
 }
 
 .modal {
@@ -74,4 +84,12 @@ $mozi-blue: #34119C;
 
 body {
   padding-top: 50px;
+}
+
+.modal {
+ overflow-y: auto;
+}
+
+.modal-open {
+ overflow: auto;
 }

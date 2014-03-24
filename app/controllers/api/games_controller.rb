@@ -27,4 +27,10 @@ class Api::GamesController < ApplicationController
     
     render "games/index"
   end
+  
+  def favorites
+    @games = current_user.favorite_games
+    
+    render "games/user_favorites"
+  end
 end

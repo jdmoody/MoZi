@@ -44,6 +44,6 @@ class Game < ActiveRecord::Base
     Stream.fetch_by_game(self.name)
     Stream.where(game: self.name).sort do |stream1, stream2|
       stream2.viewers <=> stream1.viewers
-    end.slice(0...10)
+    end.slice(0...25)
   end
 end
