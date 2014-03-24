@@ -24,7 +24,7 @@ class Game < ActiveRecord::Base
   
   def self.refresh
     Game.update_all("viewers = 0")
-    @games = Twitch.new().getTopGames()[:body]["top"]
+    @games = Twitch.new().getTopGames(limit: 25)[:body]["top"]
     
     @games.each do |game|
       if current_game = Game.find_by(name: game["game"]["name"])

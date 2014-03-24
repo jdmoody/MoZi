@@ -4,11 +4,12 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
   },
   
   routes: {
-    "": "homeShow",
-    "games": "gamesIndex",
+    ""         : "homeShow",
+    "games"    : "gamesIndex",
     "games/:id": "gameShow",
-    "games/:game_id/streams/:stream_id": "streamShow",
-    "favorites": "favoritesIndex"
+    "streams/:stream_id": "streamShow",
+    "favorites": "favoritesIndex",
+    "followed" : "followedIndex"
   },
   
   homeShow: function () {
@@ -51,7 +52,17 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     this._swapView(indexView);
   },
   
-  streamShow: function (game_id, stream_id) {
+  followedIndex: function () {
+    var indexView = new MoZi.Views.FollowedIndex({
+      collection: MoZi.Collections.followedStreams
+    });
+    
+    MoZi.Collections.followedStreams.fetch();
+    
+    this._swapView(indexView);
+  },
+  
+  oldStreamShow: function (game_id, stream_id) {
     var that = this;
     MoZi.Collections.games.getOrFetch(game_id, function (game) {
       game.streams().getOrFetch(stream_id, function (stream) {
@@ -62,6 +73,20 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
         
         that._swapView(showView);
       });
+    });
+  },
+  
+  streamShow: function (stream_id) {
+    var that = this;
+    MoZi.Collections.streams.getOrFetch(stream_id, function (stream) {
+      var showView = new MoZi.Views.StreamShow({
+        router: that,
+        model: stream
+      });
+      
+      stream.fetch();
+      
+      that._swapView(showView);
     });
   },
   

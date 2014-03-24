@@ -1,7 +1,7 @@
 class Api::GamesController < ApplicationController
   def index
     Game.refresh
-    @games = Game.all[0...10]
+    @games = Game.all[0...25]
     @game_favorites = current_user.game_favorites.map do |game_favorite|
       game_favorite.game_id
     end

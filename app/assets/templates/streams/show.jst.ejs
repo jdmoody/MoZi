@@ -22,14 +22,14 @@
         <a href="#" class="follow"
            data-id="<%= stream.get("id") %>">Follow</a>
       <% } %>
-    <span class="stream-name">
     
     <span class="stream-status">
       <%= stream.get("status") %>
     </span>
-    <object type="application/x-shockwave-flash" 
-            height="530" 
-            width="800" 
+    <object class="stream-player"
+            type="application/x-shockwave-flash" 
+            height="73%" 
+            width="100%" 
             id="live_embed_player_flash" 
            data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%= stream.get("channel_name") %>" 
             bgcolor="#000000">

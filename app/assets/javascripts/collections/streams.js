@@ -4,13 +4,15 @@ window.MoZi.Collections.Streams = Backbone.Collection.extend({
   url: "/api/streams",
   
   initialize: function (models, options) {
-    this.game = options.game;
+    
+    if (options) {
+      this.game = options.game;
+    }
   },
   
   getOrFetch: function (id, callback) {
     var model;
     var streams = this;
-    
     if (model = this.get(id)) {
       model.fetch({
         success: callback(model)
@@ -25,4 +27,6 @@ window.MoZi.Collections.Streams = Backbone.Collection.extend({
       });
     }
   }
-})
+});
+
+window.MoZi.Collections.streams = new MoZi.Collections.Streams();

@@ -2,9 +2,11 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   template: JST["streams/show"],
   
   initialize: function (options) {
+    var that = this;
     this.router = options.router;
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.router, "route", this.removeChannel);
+    $(window).resize( $.throttle(250, that.resizeChat) );
   },
   
   events: {
@@ -48,7 +50,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   sendChat: function (event) {
     event.preventDefault();
     if (!this.recharge) { this.recharge = 0; }
-    if ((Date.now() - this.recharge) > 2000) {
+    if ((Date.now() - this.recharge) > 1500) {
       this.recharge = Date.now();
       var $chatbox = $(event.currentTarget).find("input#message-box");
       var msg = $chatbox.val();
@@ -76,6 +78,11 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   updateScroll: function () {
     var element = document.getElementById("chat-display");
     element.scrollTop = element.scrollHeight;
+  },
+  
+  resizeChat: function () {
+    var videoHeight = $(".stream-player").height();
+    $("#chat-display").height(videoHeight - 50);
   },
   
   addFollow: function (event) {

@@ -1,17 +1,17 @@
-window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
-  template: JST["favorites/index"],
+window.MoZi.Views.FollowedIndex = Backbone.View.extend({
+  template: JST["followed/index"],
   
   initialize: function (options) {
     this.listenTo(this.collection, "sync", this.render);
   },
   
   events: {
-    "click .unfavorite": "removeFavorite"
+    "click .unfollow": "removeFollow"
   },
   
   render: function () {
     var renderedContent = this.template({
-      favorites: this.collection
+      followedStreams: this.collection
     });
     
     this.$el.html(renderedContent);
@@ -19,7 +19,7 @@ window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
     return this;
   },
   
-  removeFavorite: function (event) {
+  removeFollow: function (event) {
     event.preventDefault();
     var $target = $(event.currentTarget);
     
@@ -27,7 +27,7 @@ window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
     
     $.ajax({
       type: "DELETE",
-      url: "/api/game/" + $target.data("id") + "/unfavorite",
+      url: "/api/stream/" + $target.data("id") + "/unfollow",
       success: function () {
         indexView.collection.fetch();
       }

@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require jquery.grid-a-licious.min
 //= require mo_zi
+//= require jquery.ba-throttle-debounce
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ../templates

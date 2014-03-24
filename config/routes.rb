@@ -9,6 +9,7 @@ MoZi::Application.routes.draw do
     delete 'game/:id/unfavorite', to: 'games#unfavorite', as: 'unfavorite'
     
   
+    get 'streams/followed', to: 'streams#followed', as: 'followed'
     resources :streams, only: [:index, :show]
     post 'stream/:id/follow', to: 'streams#follow', as: 'follow'
     delete 'stream/:id/unfollow', to: 'streams#unfollow', as: 'unfollow'

@@ -1,4 +1,10 @@
 class Api::StreamsController < ApplicationController
+  def index
+    @streams = Stream.all
+    
+    render "streams/index"
+  end
+  
   def show
     @stream = Stream.find(params[:id])
     @game = Game.find_by(name: @stream.game)
@@ -20,5 +26,11 @@ class Api::StreamsController < ApplicationController
     @stream.stream_follows.where(user_id: current_user.id).destroy_all
     
     render "streams/show"
+  end
+  
+  def followed
+    @streams = current_user.followed_streams
+
+    render "streams/followed"
   end
 end
