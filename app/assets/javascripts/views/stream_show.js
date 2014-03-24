@@ -77,7 +77,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     var showView = this;
     
     $("#followsModalLabel").text("Followed");
-    $("#followsModalBody").text("Thanks for following" + this.model.get("name") + "!");
+    $("#followsModalBody").text("Thanks for following " + this.model.get("name") + "!");
     
     $.ajax({
       type: "POST",
@@ -94,7 +94,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     var showView = this;
     
     $("#followsModalLabel").text("Unfollow");
-    $("#followsModalBody").text("You are no longer following" + this.model.get("name"));
+    $("#followsModalBody").text("You are no longer following " + this.model.get("name"));
     
     $.ajax({
       type: "DELETE",

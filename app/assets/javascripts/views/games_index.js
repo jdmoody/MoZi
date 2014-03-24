@@ -22,29 +22,51 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   
   addFavorite: function (event) {
     event.preventDefault();
+    var $target = $(event.currentTarget)
     
     var indexView = this;
     
+    $("#favoritesModalLabel").text($target.data("game") + " Favorited");
+    $("#favoritesModalBody").text("You've added " + $target.data("game") + " to your favorites");
+    
     $.ajax({
       type: "POST",
-      url: "/api/game/" + $(event.currentTarget).data("id") + "/favorite",
+      url: "/api/game/" + $target.data("id") + "/favorite",
       success: function () {
-        indexView.collection.fetch();
+        indexView.switchFavoriteButton($target);
       }
     });
   },
   
   removeFavorite: function (event) {
     event.preventDefault();
+    var $target = $(event.currentTarget);
     
     var indexView = this;
     
+    $("#favoritesModalLabel").text($target.data("game") + " Unfavorited");
+    $("#favoritesModalBody").text("You've removed " + $target.data("game") + " from your favorites");
+    
     $.ajax({
       type: "DELETE",
-      url: "/api/game/" + $(event.currentTarget).data("id") + "/unfavorite",
+      url: "/api/game/" + $target.data("id") + "/unfavorite",
       success: function () {
-        indexView.collection.fetch();
+        indexView.switchFavoriteButton($target);
       }
     });
+  },
+  
+  switchFavoriteButton: function ($target) {
+    var $favoriteLink = $target
+    if ($favoriteLink.attr("class") === "favorite") {
+      $favoriteLink.text("Unfavorite");
+    } else {
+      $favoriteLink.text("Favorite");
+    }
+    $favoriteLink.toggleClass("favorite unfavorite");
+    $("#favoritesModal").modal("show");
+    window.setTimeout(function () {
+      $("#favoritesModal").modal("hide");
+    }, 1500);
   }
 });

@@ -1,19 +1,18 @@
-<!-- Follow Modal -->
-<div class="modal fade" id="followsModal" tabindex="-1" role="dialog" aria-labelledby="followsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="followsModalLabel"></h4>
-      </div>
-      <div class="modal-body" id="followsModalBody"></div>
-    </div>
-  </div>
-</div>
-
 <h3 id="game-index-title">Find Streams by Game</h3>
 
 <div id="games">
+  <!-- Favorite Modal -->
+  <div class="modal fade" id="favoritesModal" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="favoritesModalLabel"></h4>
+        </div>
+        <div class="modal-body" id="favoritesModalBody"></div>
+      </div>
+    </div>
+  </div>
   <% games.each(function (game) { %>
     <div class="game">
       <a href="#/games/<%= game.get("id") %>">
@@ -24,10 +23,12 @@
 
         <% if (_.contains(game.userFavorites, game.get("id"))) { %>
           <a href="#" class="unfavorite" 
-             data-id="<%= game.get("id") %>">Unfavorite</a>
+             data-id="<%= game.get("id") %>"
+             data-game="<%= game.get("name") %>">Unfavorite</a>
         <% } else { %>
           <a href="#" class="favorite" 
-             data-id="<%= game.get("id") %>">Favorite</a>
+             data-id="<%= game.get("id") %>"
+             data-game="<%= game.get("name") %>">Favorite</a>
         <% } %>
       </div>
     </div>
