@@ -29,6 +29,8 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    animate-rails (1.0.5)
+      rails
     annotate (2.6.2)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -81,6 +83,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    font-awesome-sass (4.0.3.1)
+      sass (~> 3.2)
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
@@ -185,6 +189,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  animate-rails
   annotate
   backbone-on-rails
   backbone-relational-rails
@@ -194,6 +199,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   figaro
+  font-awesome-sass
   gon
   jbuilder (~> 1.2)
   jquery-rails
