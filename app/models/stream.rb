@@ -19,6 +19,8 @@
 class Stream < ActiveRecord::Base
   default_scope order('viewers DESC')
   
+  paginates_per 16
+  
   has_many :stream_follows,
     class_name: "StreamFollow",
     foreign_key: :stream_id
@@ -41,7 +43,7 @@ class Stream < ActiveRecord::Base
         current_stream.update_attributes(viewers: stream["viewers"], 
                                          status: stream["channel"]["status"],
                                          follows: stream["channel"]["followers"],
-                                         game: stream["channel"]["game"])
+                                         game: stream["channel"]["game"].gsub("'", ""))
       else
         Stream.create!({
           name: stream["channel"]["display_name"],
@@ -50,7 +52,7 @@ class Stream < ActiveRecord::Base
           views: stream["channel"]["views"],
           follows: stream["channel"]["followers"],
           logo: stream["channel"]["logo"],
-          game: stream["game"],
+          game: stream["channel"]["game"].gsub("'", ""),
           preview: stream["preview"]["medium"],
           viewers: stream["viewers"]
         })

@@ -1,5 +1,4 @@
 <h3 id="game-index-title">Find Streams by Game</h3>
-
 <div id="games">
   <!-- Favorite Modal -->
   <div class="modal fade" id="favoritesModal" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel" aria-hidden="true">
@@ -19,7 +18,11 @@
         <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
       </a>
       <div class="game-text">
-        Viewers: <%= game.get("viewers")%><br>
+        <span class="game-title">
+          <%= game.get("name") %><br>
+        </span>
+        
+        Viewers: <%= game.get("viewers") %>
 
         <% if (_.contains(game.userFavorites, game.get("id"))) { %>
           <a href="#" class="unfavorite" 
@@ -39,10 +42,6 @@
   $("#games").gridalicious({
     selector: '.game',
     gutter: 35,
-    width: 230,
-    animate: true,
-    animationOptions: {
-      speed: 100
-    }
+    width: 230
   });
 </script>

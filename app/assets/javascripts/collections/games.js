@@ -20,6 +20,12 @@ window.MoZi.Collections.Games = Backbone.Collection.extend({
         }
       });
     }
+  },
+  
+  parse: function (data) {
+    this.page = parseInt(data.page);
+    this.total_pages = parseInt(data.total_pages);
+    return data.games;
   }
 })
 

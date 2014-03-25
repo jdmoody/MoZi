@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
       "Thankful", "Screeching", "Hulking", "Big", "Kappa", "Hushed", "Deadpan", "General", 
       "Nothin_At_All", "Languid", "Madly", "Actually", "Sharp", "Naughty", "Valuable", 
       "Amusing", "Glorious", "Devilish", "Aware", "Masterful", "Victorious", "Cool"]
+      
 	  name = "#{adjectives.sample}_MoZi_Guest_#{rand(10000)}"
 	  guest_user = User.create(username: name, email: "#{name}#{rand(99)}@mrmozi.com")
 	  guest_user.save(validate: false)

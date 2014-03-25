@@ -55,6 +55,14 @@ $mozi-blue: #34119C;
   .game {
     .game-text {
       text-align: center;
+      .game-title {
+        font-weight: bold;
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

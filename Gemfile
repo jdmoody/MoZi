@@ -35,6 +35,7 @@ gem 'figaro'
 gem 'pusher'
 gem 'pusher-client'
 gem 'gon'
+gem 'kaminari'
 
 group :development do
   gem 'annotate'

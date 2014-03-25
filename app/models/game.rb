@@ -14,6 +14,8 @@
 class Game < ActiveRecord::Base
   default_scope order('viewers DESC')
   
+  paginates_per 10
+  
   has_many :game_favorites,
     class_name: "GameFavorite",
     foreign_key: :game_id
@@ -24,14 +26,14 @@ class Game < ActiveRecord::Base
   
   def self.refresh
     Game.update_all("viewers = 0")
-    @games = Twitch.new().getTopGames(limit: 25)[:body]["top"]
+    @games = Twitch.new().getTopGames(limit: 100)[:body]["top"]
     
     @games.each do |game|
       if current_game = Game.find_by(name: game["game"]["name"])
         current_game.update_attributes(viewers: game["viewers"])
       else
         Game.create!({
-          name: game["game"]["name"],
+          name: game["game"]["name"].gsub("'", ""),
           logo: game["game"]["logo"]["large"],
           box:  game["game"]["box"]["large"],
           viewers: game["viewers"]

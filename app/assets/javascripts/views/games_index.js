@@ -3,11 +3,18 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
+    this.listenToScrolls();
   },
   
   events: {
     "click .favorite"  : "addFavorite",
     "click .unfavorite": "removeFavorite"
+  },
+  
+  listenToScrolls: function () {
+    $(window).off('scroll');
+    var callback = _.throttle(this.nextPage, 200);
+    $(window).on('scroll', callback.bind(this));
   },
   
   render: function () {
@@ -18,6 +25,17 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     this.$el.html(renderedContent);
 
     return this;
+  },
+  
+  nextPage: function () {
+    if ($(window).scrollTop() > ($(document).height() - $(window).height() - 50)) {
+      if (this.collection.page < this.collection.total_pages && this.collection.page < 10) {
+        this.collection.fetch({
+          data: { page: this.collection.page + 1 },
+          remove: false
+        });
+      }
+    }
   },
   
   addFavorite: function (event) {
