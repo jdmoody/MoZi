@@ -3,6 +3,23 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   
+  def create_guest_user
+    adjectives = ["Unusual", "Graceful", "Caring", "Intelligent", "Silent", "Nerdy", "Mature",
+      "Bloodlusted", "Sincere", "Truthful", "Famous", "Steady", "Marked", "Red", "Coherent",
+      "Obtainable", "Telling", "Enraged", "Waggish", "Succinct", "Conscious", "Typical",
+      "Thankful", "Screeching", "Hulking", "Big", "Kappa", "Hushed", "Deadpan", "General", 
+      "Nothin_At_All", "Languid", "Madly", "Actually", "Sharp", "Naughty", "Valuable", 
+      "Amusing", "Glorious", "Devilish", "Aware", "Masterful", "Victorious", "Cool"]
+	  name = "#{adjectives.sample}_MoZi_Guest_#{rand(10000)}"
+	  guest_user = User.create(username: name, email: "#{name}#{rand(99)}@mrmozi.com")
+	  guest_user.save(validate: false)
+    guest_user.game_favorites.create(game_id: Game.all[1].id)
+    guest_user.game_favorites.create(game_id: Game.all[2].id)
+    guest_user.stream_follows.create(stream_id: Stream.all[10].id)
+	  redirect_to "#/games", status: :found
+	  guest_user
+	end
+  
   protected
   
   def configure_permitted_parameters

@@ -106,7 +106,7 @@ $mozi-blue: #34119C;
 }
 
 body {
-  padding-top: 50px;
+  padding-top: 35px;
 }
 
 body.sign-up-in-page {
@@ -132,9 +132,13 @@ body.sign-up-in-page {
   margin-bottom: 10px;
 }
 
+.forgot-password {
+  float: right;
+}
+
 .sign-up-in-label {
   text-align: center;
-  .btn-sign-in {
+  .btn-sign-up-in {
     margin-top: 10px;
     width: 100%;
   }

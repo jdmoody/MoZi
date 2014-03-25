@@ -2,6 +2,7 @@ MoZi::Application.routes.draw do
   devise_for :users
   
   root 'root#root'
+  get 'users/guest', to: 'users#login_as_guest', as: 'guest'
   namespace :api, defaults: { format: :json } do
     get 'games/favorites', to: 'games#favorites', as: 'favorites'
     resources :games, only: [:index, :show]
