@@ -47,6 +47,18 @@ $mozi-blue: #34119C;
   }
 }
 
+.home {
+  .home-title {
+    text-align: center;
+  }
+  .home-button {
+    text-align: center;
+    .btn-lg {
+      font-size: 35px;
+    }
+  }
+}
+
 #game-index-title {
   text-align: center;
 }

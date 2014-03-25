@@ -11,8 +11,19 @@ window.MoZi.Views.NavShow = Backbone.View.extend({
       var renderedContent = this.template();
     
       $("#navbar").html(renderedContent);
+      
+      this.animateNav();
     
       return this;
+    }
+  },
+  
+  animateNav: function () {
+    if (!this.animated) {
+      $("#mozi-nav").toggleClass("animated slideInDown");
+      this.animated = true;
+    } else {
+      $("#mozi-nav").removeClass("animated slideInDown")
     }
   }
 })

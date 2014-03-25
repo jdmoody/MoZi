@@ -50,7 +50,7 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     $.ajax({
       type: "POST",
       url: "/api/game/" + $target.data("id") + "/favorite",
-      success: function () {
+      complete: function () {
         indexView.switchFavoriteButton($target);
       }
     });
@@ -68,7 +68,7 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     $.ajax({
       type: "DELETE",
       url: "/api/game/" + $target.data("id") + "/unfavorite",
-      success: function () {
+      complete: function () {
         indexView.switchFavoriteButton($target);
       }
     });

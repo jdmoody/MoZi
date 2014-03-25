@@ -19,14 +19,14 @@ class Api::GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.game_favorites.create(user_id: current_user.id)
     
-    render "games/index"
+    head :ok
   end
   
   def unfavorite
     @game = Game.find(params[:id])
     @game.game_favorites.where(user_id: current_user.id).destroy_all
     
-    render "games/index"
+    head :ok
   end
   
   def favorites
