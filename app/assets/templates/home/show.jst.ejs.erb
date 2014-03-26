@@ -1,0 +1,36 @@
+<div class="home">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="home-title">
+        <%= image_tag "MoZi-logo.png" %>
+        <div class="well well-sm">
+          <h4>
+            <i>Solo Project by Jonathan Moody</i>
+          </h4>
+        </div>
+      </div>
+      <div class="home-button">
+        <a href="users/sign_in" class="btn btn-lg btn-primary">Launch The App</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="backgrounds">
+  <%= image_tag "backgrounds/lol.jpg" %>
+  <%= image_tag "backgrounds/dota2.jpg" %>
+  <%= image_tag "backgrounds/wow.jpg" %>
+  <%= image_tag "backgrounds/diablo3.jpg" %>
+  <%= image_tag "backgrounds/tpp.png" %>
+</div>
+
+<script>
+  $("body").addClass("home");
+  function background() {
+    $("#backgrounds img").first().appendTo('#backgrounds').fadeOut(5000);
+    $("#backgrounds img").first().fadeIn(5000);
+    
+    setTimeout(background, 10000);
+  }
+  background();
+</script>

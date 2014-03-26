@@ -4,7 +4,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 gem 'pg'
 gem 'thread_safe', '0.2.0'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'rails_serve_static_assets'
 
 gem 'sass-rails', '~> 4.0.0'
