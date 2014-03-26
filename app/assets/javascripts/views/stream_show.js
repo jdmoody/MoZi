@@ -41,21 +41,64 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
       this.channel.unbind("message");
       var that = this;
       this.channel.bind("message", this.writeMessage.bind(that));
-    } 
+    }
+    $("#chat-display").append("<b>MoZiBot</b>: Welcome to " + this.model.get("name") + "'s Stream Chat!<br />") 
+    $("#chat-display").append("Type '!emotes' to see a list of chat emotes.")
   },
   
   writeMessage: function (data) {
     var $el = $('<p></p>');
-    if (data.message === "Kappa") {
-      debugger
-      data.message = $('#Kappa').html();
-      $el.text(data.user + ": ");
-      $el.append(data.message);
+    var $user = $('<b></b>').text(data.user);
+    var that = this;
+    
+    if (data.message === "!emotes") {
+      $el = $('<p></p>').append("<b>MoZiBot</b>: List of Faces: <br />");
+      $el.append("Kappa = ").append(that.getFace("Kappa"));
+      $el.append("<br />FrankerZ = ").append(that.getFace("FrankerZ"));
+      $el.append("<br />BibleThump = ").append(that.getFace("BibleThump"));
+      $el.append("<br />Keepo = ").append(that.getFace("Keepo"));
+      $el.append("<br />ResidentSleeper = ").append(that.getFace("ResidentSleeper"));
+      $el.append("<br />WhatCost = ").append(that.getFace("WhatCost"));
+      $el.append("<br />TableFlip = ").append(that.getFace("TableFlip"));
+      $el.append("<br />** All face emotes are property of Justin.tv, Inc. **")
     } else {
-      $el.text(data.user + ": " + data.message)
+      var faces = ["Kappa", "WhatCost", "TableFlip", "SnipSnip", "FrankerZ",
+                   "BibleThump", "ResidentSleeper", "Keepo"];
+      $el.append(": ");
+      var messageWords = data.message.split(" ");
+      _.each(messageWords, function (word) {
+        if (faces.indexOf(word) !== -1) {
+          $el.append(" " + that.getFace(word))
+        } else {
+          $word = $("<span></span>").text(" " + word);
+          $el.append($word);
+        }
+      });
+      
+      $el.prepend($user);
     }
     $("#chat-display").append($el);
     this.updateScroll();
+  },
+  
+  getFace: function (string) {
+    if (string === "Kappa") {
+      return $('#Kappa').html();
+    } else if (string === "FrankerZ") {
+      return $('#FrankerZ').html();
+    } else if (string === "BibleThump") {
+      return $('#BibleThump').html();
+    } else if (string === "ResidentSleeper") {
+      return $('#ResidentSleeper').html();
+    } else if (string === "Keepo") {
+      return $('#Keepo').html();
+    } else if (string === "WhatCost") {
+      return "ლ(ಠ益ಠლ)﻿";
+    } else if (string === "TableFlip") {
+      return "(╯°□°）╯︵ ┻━┻";
+    } else if (string === "SnipSnip") {
+      return "( ＾◡＾)っ✂╰⋃╯";
+    }
   },
   
   sendChat: function (event) {
@@ -118,7 +161,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     
     var showView = this;
     
-    $("#followsModalLabel").text("Unfollow");
+    $("#followsModalLabel").text("Unfollowed");
     $("#followsModalBody").text("You are no longer following " + this.model.get("name"));
     
     $.ajax({
