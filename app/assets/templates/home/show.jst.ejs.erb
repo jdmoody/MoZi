@@ -3,14 +3,72 @@
     <div class="col-md-4 col-md-offset-4">
       <div class="home-title">
         <%= image_tag "MoZi-logo.png" %>
-        <div class="well well-sm">
-          <h4>
-            <i>Solo Project by Jonathan Moody</i>
-          </h4>
-        </div>
       </div>
       <div class="home-button">
         <a href="users/sign_in" class="btn btn-lg btn-primary">Launch The App</a>
+      </div>
+      <div class="well well-sm">
+        <h4>
+          <i>Solo Project by Jonathan Moody</i>
+          <a href="http://www.github.com/jdmoody" target="_blank">
+            <i class="fa fa-github-square fa-lg"></i>
+          </a>
+          <a href="http://www.linkedin.com/pub/jonathan-moody/76/973/189/" 
+             target="_blank">
+            <i class="fa fa-linkedin-square fa-lg"></i>
+          </a>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="about panel">
+        <h2>About</h2>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <%= image_tag "twitch_logo.png", size: '152x50' %>
+          </div>
+          <div class="col-md-6">
+            <div class="about-body">
+            MoZi is a <a href="http://www.twitch.tv">Twitch</a> stream viewer that uses the Twitch API to retrieve Twitch's stream content. Each stream has a chatroom independent of Twitch. Users can favorite games and follow specific streams.
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <%= image_tag "backbone.png", size: '90x112' %>
+          </div>
+          <div class="col-md-6">
+            <div class="about-body">
+              <h4 style="font-weight: bold">Backbone.js Frontend</h4>
+              <ul>
+                <li>jQuery</li>
+                <li>Grid-a-licious</li>
+                <li>Bootstrap</li>
+                <li>HTML5 + CSS3</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <%= image_tag "ruby.png", size: '110x110' %>
+          </div>
+          <div class="col-md-6">
+            <div class="about-body">
+              <h4 style="font-weight: bold">Ruby on Rails Backend</h4>
+              <ul>
+                <li>Postgresql Database</li>
+                <li>Using Twitch API for Stream data</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

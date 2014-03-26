@@ -51,18 +51,6 @@
   }
 }
 
-.home {
-  .home-title {
-    text-align: center;
-  }
-  .home-button {
-    text-align: center;
-    .btn-lg {
-      font-size: 35px;
-    }
-  }
-}
-
 #game-index-title {
   text-align: center;
 }
@@ -145,6 +133,9 @@ body {
 }
 
 body.home {
+  h2, h3 {
+    font-weight: bold;
+  }
   background-color: black;
   #backgrounds img {
     z-index: -1;
@@ -153,6 +144,38 @@ body.home {
     top: 0;
     width: 100%;
     height: 100%;
+  }
+  .home-title {
+    text-align: center;
+  }
+  .home-button {
+    text-align: center;
+    .btn-lg {
+      font-size: 35px;
+    }
+  }
+  .well {
+    text-align: center;
+    background-color: lightgrey;
+    margin-top: 10px;
+    a {
+      text-decoration: none;
+    }
+    .fa {
+      margin-left: 10px;
+    }
+  }
+  .about {
+    .row {
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    text-align: center;
+    background-color: lightgrey;
+    .about-body {
+      text-align: left;
+      margin-right: 5px;
+    }
   }
 }
 
