@@ -20,7 +20,14 @@ class ApplicationController < ActionController::Base
 	  guest_user.save(validate: false)
     guest_user.game_favorites.create(game_id: Game.all[1].id)
     guest_user.game_favorites.create(game_id: Game.all[2].id)
+    guest_user.game_favorites.create(game_id: Game.all[3].id)
+    guest_user.game_favorites.create(game_id: Game.all[7].id)
+    guest_user.game_favorites.create(game_id: Game.all[5].id)
     guest_user.stream_follows.create(stream_id: Stream.all[10].id)
+    guest_user.stream_follows.create(stream_id: Stream.all[20].id)
+    guest_user.stream_follows.create(stream_id: Stream.all[30].id)
+    guest_user.stream_follows.create(stream_id: Stream.all[40].id)
+    guest_user.stream_follows.create(stream_id: Stream.all[50].id)
 	  redirect_to "#/games", status: :found
 	  guest_user
 	end

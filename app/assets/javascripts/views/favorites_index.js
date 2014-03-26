@@ -28,7 +28,7 @@ window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
     $.ajax({
       type: "DELETE",
       url: "/api/game/" + $target.data("id") + "/unfavorite",
-      success: function () {
+      complete: function () {
         indexView.collection.fetch();
       }
     });

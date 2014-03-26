@@ -14,23 +14,27 @@
  *= require animate
  */
 
-@import "bootstrap";
+@import "yeti-bootstrap";
 
-$mozi-blue: #34119C;
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 75px;
+    height: 75px;
+    padding-top: 0;
+}
 
 #mozi-nav {
   .navbar-brand {
     font-size: 35px;
   }
-  font-size: 15px;
-  font-weight: bold;
-  background-color: $mozi-blue;
+  font-size: 17px;
+  background-color: black;
   ul.sessions {
     float: right;
   }
   .dropdown {
     a:focus {
-      background-color: $mozi-blue;
+      background-color: black;
       color: #428bca;
     }
     a:hover {
@@ -38,7 +42,7 @@ $mozi-blue: #34119C;
       color: #2a6496;
     }
     .dropdown-menu {
-      background-color: $mozi-blue;
+      background-color: black;
       a {
         color: #428bca;
         font-weight: bold;
@@ -84,9 +88,8 @@ $mozi-blue: #34119C;
 }
 
 .stream-display {
-  margin-top: 30px;
   .stream-viewer {
-    height: 90%;
+    height: 80%;
     .stream-name {
       font-size: 35px;
       font-weight: bold;
@@ -105,15 +108,26 @@ $mozi-blue: #34119C;
     height: 90%;
     margin-top: 35px;
     #chat-display {
-      height: 500px;
       overflow-y: scroll;
       background-color: lightgrey;
       margin-bottom: 5px;
+    }
+    form {
+      textarea {
+        width: 100%;
+      }
+      button {
+        width: 100%;
+      }
     }
   }
 }
 
 #favorites {
+  text-align: center;
+}
+
+#followed-streams {
   text-align: center;
 }
 
@@ -126,7 +140,24 @@ $mozi-blue: #34119C;
 }
 
 body {
-  padding-top: 35px;
+  padding-top: 75px;
+  background-color: #E1E1E1;
+}
+
+body.home {
+  background-color: black;
+  .panel {
+    width: 300px;
+    margin-left: 40px;
+  }
+  #backgrounds img {
+    z-index: -1;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 body.sign-up-in-page {

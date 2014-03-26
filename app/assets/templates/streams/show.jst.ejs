@@ -49,11 +49,18 @@
     
     <form id="message">
   
-      <label>Message:
-        <input type="text" name="message[text]" id="message-box">
-      </label>
+      <textarea name="message[text]" id="message-box" 
+      placeholder="Chat about this channel"></textarea><br />
 
-      <button>Send</button>
+      <button class="btn btn-primary btn-sm">Send</button>
     </form>
+    <script>
+      $("#message-box").keydown(function (event) {
+        if (event.keyCode === 13) {
+          $(event.currentTarget.form).trigger("submit");
+          return false;
+        } else { return true; }
+      });
+    </script>
   </div>
 </div>

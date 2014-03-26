@@ -23,6 +23,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     this.$el.html(renderedContent);
     
     this.setUpChat();
+    this.resizeChat();
     
     return this;
   },
@@ -38,13 +39,22 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
       this.pusher = new Pusher(gon.global.pusher_key);
       this.channel = this.pusher.subscribe(this.path);
       this.channel.unbind("message");
-      this.channel.bind("message", function(data) {
-        var $el = $('<p></p>');
-        $el.text(data.user + ": " + data.message)
-        $("#chat-display").append($el);
-        showView.updateScroll();
-      });
+      var that = this;
+      this.channel.bind("message", this.writeMessage.bind(that));
     } 
+  },
+  
+  writeMessage: function (data) {
+    var $el = $('<p></p>');
+    if (data.message === "Kappa") {
+      data.message = $('<img src="assets/Faces/Kappa.png"></img>')
+      $el.text(data.user + ": ");
+      $el.append(data.message);
+    } else {
+      $el.text(data.user + ": " + data.message)
+    }
+    $("#chat-display").append($el);
+    this.updateScroll();
   },
   
   sendChat: function (event) {
@@ -52,7 +62,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     if (!this.recharge) { this.recharge = 0; }
     if ((Date.now() - this.recharge) > 1500) {
       this.recharge = Date.now();
-      var $chatbox = $(event.currentTarget).find("input#message-box");
+      var $chatbox = $(event.currentTarget).find("textarea#message-box");
       var msg = $chatbox.val();
       $chatbox.val("");
 
@@ -82,7 +92,7 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   
   resizeChat: function () {
     var videoHeight = $(".stream-player").height();
-    $("#chat-display").height(videoHeight - 50);
+    $("#chat-display").height(videoHeight - 100);
   },
   
   addFollow: function (event) {

@@ -1,12 +1,35 @@
 <div class="home">
-  <div class="home-title">
-    <h1>MoZi</h1>
-    <h4><i>Solo Project by Jonathan Moody</i></h4>
-  </div>
-  <div class="home-button">
-    <a href="users/sign_in" class="btn btn-lg btn-primary">Launch The App</a>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="home-title">
+        <img src="assets/MoZi-logo.png"></img>
+        <div class="panel panel-success" style="text-align: center">
+          <h4><i>Solo Project by Jonathan Moody</i></h4>
+        </div>
+      </div>
+      <div class="home-button">
+        <a href="users/sign_in" class="btn btn-lg btn-primary">Launch The App</a>
+      </div>
+    </div>
   </div>
 </div>
+
+<div id="backgrounds">
+  <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-1.jpg" />
+  <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-5.jpg" />
+  <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-3.jpg" />
+</div>
+
+<script>
+  $("body").addClass("home");
+  function background() {
+    $("#backgrounds img").first().appendTo('#backgrounds').fadeOut(5000);
+    $("#backgrounds img").first().fadeIn(5000);
+    
+    setTimeout(background, 7000);
+  }
+  background();
+</script>
 
 <!-- <nav id="mozi-nav" class="navbar navbar-fixed-top dk affix-top" role="navigation">
   <div class="container">
