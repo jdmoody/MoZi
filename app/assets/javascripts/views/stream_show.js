@@ -47,7 +47,8 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
   writeMessage: function (data) {
     var $el = $('<p></p>');
     if (data.message === "Kappa") {
-      data.message = $('<img src="assets/Faces/Kappa.png"></img>')
+      debugger
+      data.message = $('#Kappa').html();
       $el.text(data.user + ": ");
       $el.append(data.message);
     } else {
