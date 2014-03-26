@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       "Bloodlusted", "Sincere", "Truthful", "Famous", "Steady", "Marked", "Red", "Coherent",
       "Obtainable", "Telling", "Enraged", "Waggish", "Succinct", "Conscious", "Typical",
       "Thankful", "Screeching", "Hulking", "Big", "Kappa", "Hushed", "Deadpan", "General", 
-      "Nothin_At_All", "Languid", "Madly", "Actually", "Sharp", "Naughty", "Valuable", 
+      "Nothin_At_All", "Languid", "Whacky", "Hungry", "Sharp", "Naughty", "Valuable", 
       "Amusing", "Glorious", "Devilish", "Aware", "Masterful", "Victorious", "Cool"]
       
 	  name = "#{adjectives.sample}_Guest_#{rand(99)}"

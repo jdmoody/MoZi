@@ -32,9 +32,9 @@
            data-id="<%%= stream.get("id") %>">Follow</a>
       <%% } %>
     
-    <span class="stream-status">
+    <div class="stream-status" data-toggle="tooltip" title="<%%= stream.get("status") %>">
       <%%= stream.get("status") %>
-    </span>
+    </div>
     <object class="stream-player"
             type="application/x-shockwave-flash" 
             height="73%" 
@@ -70,6 +70,8 @@
           return false;
         } else { return true; }
       });
+      
+      $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
     </script>
   </div>
 </div>

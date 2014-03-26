@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home animated fadeIn">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <div class="home-title">
@@ -33,7 +33,7 @@
           </div>
           <div class="col-md-6">
             <div class="about-body">
-            MoZi is a <a href="http://www.twitch.tv">Twitch</a> stream viewer that uses the Twitch API to retrieve Twitch's stream content. Each stream has a chatroom independent of Twitch. Users can favorite games and follow specific streams.
+            MoZi is a <a href="http://www.twitch.tv" target="_blank">Twitch</a> stream viewer that uses the Twitch API to retrieve Twitch's stream content. Each stream has a chatroom independent of Twitch. Users can favorite games and follow specific streams.
             </div>
           </div>
         </div>
@@ -91,4 +91,11 @@
     setTimeout(background, 15000);
   }
   background();
+  
+  function wiggleIcons() {
+    $(".fa").toggleClass("animated wobble")
+    setTimeout(wiggleIcons, 5000);
+  }
+  
+  setTimeout(wiggleIcons, 4000);
 </script>
