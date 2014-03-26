@@ -213,6 +213,7 @@ DEPENDENCIES
   pusher-client
   rails (= 4.0.3)
   rails_12factor
+  rails_serve_static_assets
   sass-rails (~> 4.0.0)
   sdoc
   thread_safe (= 0.2.0)
