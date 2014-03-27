@@ -1,6 +1,7 @@
 json.(
   stream,
   :id,
+  :friendly_id,
   :name,
   :channel_name,
   :status,

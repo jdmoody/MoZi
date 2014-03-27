@@ -1,8 +1,10 @@
 window.MoZi.Views.GamesIndex = Backbone.View.extend({
   template: JST["games/index"],
   
-  initialize: function () {
+  initialize: function (options) {
+    this.router = options.router;
     this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.router, "route", this.removeScrollListener)
     this.listenToScrolls();
   },
   
@@ -15,6 +17,10 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
     $(window).off('scroll');
     var callback = _.throttle(this.nextPage, 200);
     $(window).on('scroll', callback.bind(this));
+  },
+  
+  removeScrollListener: function () {
+    $(window).off('scroll');
   },
   
   render: function () {

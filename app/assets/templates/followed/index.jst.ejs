@@ -2,7 +2,7 @@
   <h1>Followed Streams</h1>
   <% followedStreams.each(function (stream) { %>
     <div class="stream">
-      <a href="#/streams/<%= stream.get("id") %>">
+      <a href="#/streams/<%= stream.get("friendly_id") %>">
         <img src="<%= stream.get("preview") %>" 
              alt="<%= stream.get("name") %>-box">
       </a>

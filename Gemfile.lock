@@ -85,6 +85,8 @@ GEM
       rails (>= 3, < 5)
     font-awesome-sass (4.0.3.1)
       sass (~> 3.2)
+    friendly_id (5.0.3)
+      activerecord (>= 4.0.0)
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
@@ -203,6 +205,7 @@ DEPENDENCIES
   devise
   figaro
   font-awesome-sass
+  friendly_id
   gon
   jbuilder (~> 1.2)
   jquery-rails

@@ -1,4 +1,4 @@
-json.(game, :id, :name, :logo, :box, :viewers)
+json.(game, :id, :name, :logo, :box, :viewers, :friendly_id)
 
 streams ||= nil
 unless streams.nil?

@@ -10,20 +10,20 @@ class Api::GamesController < ApplicationController
   end
   
   def show
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     @streams = @game.ordered_stream_list
     render "games/show"
   end
   
   def favorite
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     @game.game_favorites.create(user_id: current_user.id)
     
     head :ok
   end
   
   def unfavorite
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     @game.game_favorites.where(user_id: current_user.id).destroy_all
     
     head :ok

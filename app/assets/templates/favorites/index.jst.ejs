@@ -2,7 +2,7 @@
   <h1>Favorites</h1><br>
   <% favorites.each(function (game) { %>
     <div class="game">
-      <a href="#/games/<%= game.get("id") %>">
+      <a href="#/games/<%= game.get("friendly_id") %>">
         <img src="<%= game.get("box") %>" alt="<%= game.get("name") %>-box">
       </a>
       <div class="game-text">

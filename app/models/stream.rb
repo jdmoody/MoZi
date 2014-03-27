@@ -17,6 +17,9 @@
 #
 
 class Stream < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   default_scope order('viewers DESC')
   
   paginates_per 16

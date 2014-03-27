@@ -33,6 +33,7 @@ end
 
 gem 'devise'
 gem 'figaro'
+gem 'friendly_id'
 gem 'pusher'
 gem 'pusher-client'
 gem 'gon'
