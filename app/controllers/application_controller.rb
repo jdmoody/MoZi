@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
       "Nothin_At_All", "Languid", "Whacky", "Hungry", "Sharp", "Naughty", "Valuable", 
       "Amusing", "Glorious", "Devilish", "Aware", "Masterful", "Victorious", "Cool"]
       
-	  name = "#{adjectives.sample}_Guest_#{rand(99)}"
-	  guest_user = User.create(username: name, email: "#{name}#{rand(99)}@mrmozi.com")
+	  name = "MoziGuest_#{rand(10000)}"
+	  guest_user = User.create(username: name, email: "#{name}#{rand(99)}@jdmozi.com")
 	  guest_user.save(validate: false)
     guest_user.game_favorites.create(game_id: Game.all[1].id)
     guest_user.game_favorites.create(game_id: Game.all[2].id)

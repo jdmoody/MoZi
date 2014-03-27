@@ -53,14 +53,14 @@ window.MoZi.Views.StreamShow = Backbone.View.extend({
     
     if (data.message === "!emotes") {
       $el = $('<p></p>').append("<b>MoZiBot</b>: List of Faces: <br />");
-      $el.append("Kappa = ").append(that.getFace("Kappa"));
-      $el.append("<br />FrankerZ = ").append(that.getFace("FrankerZ"));
-      $el.append("<br />BibleThump = ").append(that.getFace("BibleThump"));
-      $el.append("<br />Keepo = ").append(that.getFace("Keepo"));
-      $el.append("<br />ResidentSleeper = ").append(that.getFace("ResidentSleeper"));
-      $el.append("<br />WhatCost = ").append(that.getFace("WhatCost"));
-      $el.append("<br />TableFlip = ").append(that.getFace("TableFlip"));
-      $el.append("<br />** All face emotes are property of Justin.tv, Inc. **")
+      $el.append(that.getFace("Kappa") + " = Kappa <br />")
+      $el.append(that.getFace("FrankerZ") + " = FrankerZ <br />");
+      $el.append(that.getFace("BibleThump") + " = BibleThump <br />");
+      $el.append(that.getFace("Keepo") + " = Keepo <br />");
+      $el.append(that.getFace("ResidentSleeper") + " = ResidentSleeper<br />");
+      $el.append(that.getFace("WhatCost") + " = WhatCost<br />");
+      $el.append(that.getFace("TableFlip") + " = TableFlip<br />");
+      $el.append("** All face emotes are property of Justin.tv, Inc. **")
     } else {
       var faces = ["Kappa", "WhatCost", "TableFlip", "SnipSnip", "FrankerZ",
                    "BibleThump", "ResidentSleeper", "Keepo"];

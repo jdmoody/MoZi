@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327005025) do
+ActiveRecord::Schema.define(version: 20140327201727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140327005025) do
     t.string   "slug"
   end
 
+  add_index "games", ["name"], name: "index_games_on_name", using: :btree
   add_index "games", ["slug"], name: "index_games_on_slug", unique: true, using: :btree
 
   create_table "stream_follows", force: true do |t|
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140327005025) do
   end
 
   add_index "streams", ["channel_name"], name: "index_streams_on_channel_name", unique: true, using: :btree
+  add_index "streams", ["game"], name: "index_streams_on_game", using: :btree
   add_index "streams", ["slug"], name: "index_streams_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|

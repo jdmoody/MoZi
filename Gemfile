@@ -38,6 +38,7 @@ gem 'pusher'
 gem 'pusher-client'
 gem 'gon'
 gem 'kaminari'
+gem 'thin'
 
 group :development do
   gem 'annotate'
