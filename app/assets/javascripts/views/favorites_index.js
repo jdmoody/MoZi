@@ -22,6 +22,7 @@ window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
   removeFavorite: function (event) {
     event.preventDefault();
     var $target = $(event.currentTarget);
+    $target.closest(".game").addClass("animated flipOutX");
     
     var indexView = this;
     
@@ -29,7 +30,7 @@ window.MoZi.Views.FavoritesIndex = Backbone.View.extend({
       type: "DELETE",
       url: "/api/game/" + $target.data("id") + "/unfavorite",
       complete: function () {
-        indexView.collection.fetch();
+        setTimeout(indexView.collection.fetch.bind(indexView.collection), 1000);
       }
     });
   }
