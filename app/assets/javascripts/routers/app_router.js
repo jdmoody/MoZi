@@ -20,6 +20,7 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
   
   gamesIndex: function () {
     var that = this;
+    this.$rootEl.html("<h1 id='game-index-title'>Loading Games...</h1><br />");
     MoZi.Collections.games.fetch({
       success: function () {
         var indexView = new MoZi.Views.GamesIndex({
@@ -34,6 +35,7 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
   
   gameShow: function (id) {
     var that = this;
+    this.$rootEl.html("<h3 style='text-align: center'>Loading Streams...</h3>");
     MoZi.Collections.games.getOrFetch(id, function (game) {
       var showView = new MoZi.Views.GameShow({
         model: game
@@ -62,20 +64,6 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
     
     this._swapView(indexView);
   },
-  
-  // oldStreamShow: function (game_id, stream_id) {
-  //   var that = this;
-  //   MoZi.Collections.games.getOrFetch(game_id, function (game) {
-  //     game.streams().getOrFetch(stream_id, function (stream) {
-  //       var showView = new MoZi.Views.StreamShow({
-  //         router: that,
-  //         model: stream
-  //       });
-  //       
-  //       that._swapView(showView);
-  //     });
-  //   });
-  // },
   
   streamShow: function (stream_id) {
     var that = this;

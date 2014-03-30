@@ -1,18 +1,28 @@
 <div id="followed-streams">
-  <h1>Followed Streams</h1>
-  <% followedStreams.each(function (stream) { %>
-    <div class="stream">
-      <a href="#/streams/<%= stream.get("friendly_id") %>">
-        <img src="<%= stream.get("preview") %>" 
-             alt="<%= stream.get("name") %>-box">
-      </a>
-      <div class="stream-text">
-          <a href="#" class="unfollow" 
-             data-id="<%= stream.get("id") %>"
-             data-stream="<%= stream.get("name") %>">Unfollow</a>
+  <% if (followedStreams.length === 0) { %>
+    <h1>You Have No Followed Streams!</h1>
+    <h3>Find a stream you like and click "Follow" to save the stream here</h3>
+    <h4>Might I suggest watching some 
+      <a href="#/games/dota-2">Dota 2</a>
+      or <a href="#/games/starcraft-ii-heart-of-the-swarm">Starcraft II</a>?
+    </h4>
+  <% } else { %>
+    <h1>Followed Streams</h1>
+  
+    <% followedStreams.each(function (stream) { %>
+      <div class="stream">
+        <a href="#/streams/<%= stream.get("friendly_id") %>">
+          <img src="<%= stream.get("preview") %>" 
+               alt="<%= stream.get("name") %>-box">
+        </a>
+        <div class="stream-text">
+            <a href="#" class="unfollow" 
+               data-id="<%= stream.get("id") %>"
+               data-stream="<%= stream.get("name") %>">Unfollow</a>
+        </div>
       </div>
-    </div>
-  <% }) %>
+    <% }) %>
+  <% } %>
 </div>
 
 <script>

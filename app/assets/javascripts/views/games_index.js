@@ -3,8 +3,9 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   
   initialize: function (options) {
     this.router = options.router;
+    this.listenTo(this.collection, "add", this.appendGames);
     this.listenTo(this.collection, "sync", this.render);
-    this.listenTo(this.router, "route", this.removeScrollListener)
+    this.listenTo(this.router, "route", this.removeScrollListener);
     this.listenToScrolls();
   },
   
@@ -24,18 +25,40 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   },
   
   render: function () {
-    var renderedContent = this.template({
-      games: this.collection
-    });
+    if (this.scrolled) {
+      return this;
+    } else {
+      var renderedContent = this.template({
+        games: this.collection
+      });
     
-    this.$el.html(renderedContent);
+      this.$el.html(renderedContent);
 
-    return this;
+      return this;
+    }
+  },
+  
+  appendGames: function () {
+    $(".loading").hide();
+    if (this.addedGames === false) {
+      this.scrolled = true;
+      var len = this.collection.length;
+      var newGames = this.collection.slice(len - 10, len);
+      _.each(newGames, function (game) {
+        var renderedContent = JST["games/game"]({
+          game: game
+        })
+        $("#games").gridalicious('append', [renderedContent]);
+      });
+      this.addedGames = true;
+    }
   },
   
   nextPage: function () {
     if ($(window).scrollTop() > ($(document).height() - $(window).height() - 50)) {
       if (this.collection.page < this.collection.total_pages && this.collection.page < 10) {
+        this.addedGames = false;
+        $(".loading").show();
         this.collection.fetch({
           data: { page: this.collection.page + 1 },
           remove: false
