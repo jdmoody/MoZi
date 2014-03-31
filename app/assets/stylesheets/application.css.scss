@@ -16,6 +16,9 @@
 
 @import "yeti-bootstrap";
 
+$moziLightBlue: #428bca;
+$moziDarkBlue: #2a6496;
+
 .navbar-brand,
 .navbar-nav li a {
     line-height: 75px;
@@ -27,6 +30,10 @@
   .navbar-brand {
     font-size: 35px;
   }
+  .navbar-brand:hover {
+      color: $moziDarkBlue;
+      background-color: white;
+  }
   font-size: 17px;
   font-weight: bold;
   background-color: black;
@@ -36,16 +43,16 @@
   .dropdown {
     a:focus {
       background-color: black;
-      color: #428bca;
+      color: $moziLightBlue;
     }
     a:hover {
       background-color: white;
-      color: #2a6496;
+      color: $moziDarkBlue;
     }
     .dropdown-menu {
       background-color: black;
       a {
-        color: #428bca;
+        color: $moziLightBlue;
         font-weight: bold;
       }
     }
