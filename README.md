@@ -1,4 +1,4 @@
-# MoZi
+# [MoZi](http://www.jdmozi.com)
 
 ## Description
 MoZi is a [Twitch](http://www.twitch.tv) stream viewer that uses the Twitch API to retrieve Twitch's stream content. Each stream has a chatroom implemented via Pusher independent from Twitch chat. Users can favorite specific games and follow specific streamers.
