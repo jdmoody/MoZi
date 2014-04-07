@@ -4,6 +4,12 @@ window.MoZi.Views.NavShow = Backbone.View.extend({
   initialize: function (options) {
     this.router = options.router;
     this.listenTo(this.router, "route", this.render);
+    this.listenTo(this.router, "route", this.removeScrollListener)
+  },
+  
+  removeScrollListener: function () {
+    debugger
+    $(window).off('scroll');
   },
   
   render: function () {

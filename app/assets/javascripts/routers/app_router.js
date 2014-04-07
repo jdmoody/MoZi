@@ -50,9 +50,9 @@ window.MoZi.Routers.AppRouter = Backbone.Router.extend({
       collection: MoZi.Collections.favoriteGames
     });
     
-    MoZi.Collections.favoriteGames.fetch();
-    
-    this._swapView(indexView);
+    MoZi.Collections.favoriteGames.fetch({
+      success: this._swapView(indexView)
+    });
   },
   
   followedIndex: function () {

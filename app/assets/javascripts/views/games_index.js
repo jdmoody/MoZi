@@ -21,6 +21,7 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
   },
   
   removeScrollListener: function () {
+    debugger
     $(window).off('scroll');
   },
   

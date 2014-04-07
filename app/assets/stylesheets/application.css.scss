@@ -18,6 +18,7 @@
 
 $moziLightBlue: #428bca;
 $moziDarkBlue: #2a6496;
+$moziDarkGrey: #24242B;
 
 .navbar-brand,
 .navbar-nav li a {
@@ -36,13 +37,13 @@ $moziDarkBlue: #2a6496;
   }
   font-size: 17px;
   font-weight: bold;
-  background-color: black;
+  background-color: $moziDarkGrey;
   ul.sessions {
     float: right;
   }
   .dropdown {
     a:focus {
-      background-color: black;
+      background-color: $moziDarkGrey;
       color: $moziLightBlue;
     }
     a:hover {
@@ -50,7 +51,7 @@ $moziDarkBlue: #2a6496;
       color: $moziDarkBlue;
     }
     .dropdown-menu {
-      background-color: black;
+      background-color: $moziDarkGrey;
       a {
         color: $moziLightBlue;
         font-weight: bold;
