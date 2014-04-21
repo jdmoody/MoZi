@@ -51,7 +51,6 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
         $("#games").gridalicious('append', [renderedContent]);
       });
       this.addedGames = true;
-      // debugger
       window.scrollBy(0, 80);
     }
   },
@@ -61,7 +60,6 @@ window.MoZi.Views.GamesIndex = Backbone.View.extend({
       if (this.collection.page < this.collection.total_pages && this.collection.page < 10) {
         this.addedGames = false;
         $(".loading").show();
-        // debugger
         smoothScroll.animateScroll(null, ".loading", { speed: 2000, easing: 'easOutCubic' });
         this.collection.fetch({
           data: { page: this.collection.page + 1 },

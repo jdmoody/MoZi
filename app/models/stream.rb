@@ -41,6 +41,7 @@ class Stream < ActiveRecord::Base
     
     # Updates database streams corresponding to those from twitch,
     # or creates a new stream
+    new_streams = []
     streams.each do |stream|
       if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
         current_stream.update_attributes(viewers: stream["viewers"], 
@@ -48,7 +49,7 @@ class Stream < ActiveRecord::Base
                                          follows: stream["channel"]["followers"],
                                          game: stream["channel"]["game"].gsub("'", ""))
       else
-        Stream.create!({
+        new_streams << Stream.new(
           name: stream["channel"]["display_name"],
           channel_name: stream["channel"]["name"],
           status: stream["channel"]["status"],
@@ -58,8 +59,9 @@ class Stream < ActiveRecord::Base
           game: stream["channel"]["game"].gsub("'", ""),
           preview: stream["preview"]["medium"],
           viewers: stream["viewers"]
-        })
+        )
       end
     end
+    Stream.import new_streams
   end
 end

@@ -30,19 +30,22 @@ class Game < ActiveRecord::Base
   def self.refresh
     Game.update_all("viewers = 0")
     @games = Twitch.new().getTopGames(limit: 100)[:body]["top"]
-    
+    new_games = []
     @games.each do |game|
+      # updated_games << Game.new(name: game["game"]["name"].gsub("'", ""),
+      #                           logo: game["game"]["logo"]["large"],
+      #                           box:  game["game"]["box"]["large"],
+      #                           viewers: game["viewers"])
       if current_game = Game.find_by(name: game["game"]["name"])
         current_game.update_attributes(viewers: game["viewers"])
       else
-        Game.create!({
-          name: game["game"]["name"].gsub("'", ""),
-          logo: game["game"]["logo"]["large"],
-          box:  game["game"]["box"]["large"],
-          viewers: game["viewers"]
-        })
+        new_games << Game.new(name: game["game"]["name"].gsub("'", ""),
+                              logo: game["game"]["logo"]["large"],
+                              box:  game["game"]["box"]["large"],
+                              viewers: game["viewers"])
       end
     end
+    Game.import new_games
   end
   
   def ordered_stream_list

@@ -40,6 +40,7 @@ gem 'newrelic_rpm'
 gem 'gon'
 gem 'kaminari'
 gem 'thin'
+gem 'activerecord-import'
 
 group :development do
   gem 'annotate'
