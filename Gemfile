@@ -41,6 +41,7 @@ gem 'gon'
 gem 'kaminari'
 gem 'thin'
 gem 'activerecord-import'
+gem 'redis-rails'
 
 group :development do
   gem 'annotate'

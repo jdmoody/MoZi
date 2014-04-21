@@ -54,4 +54,18 @@ class Game < ActiveRecord::Base
       stream2.viewers <=> stream1.viewers
     end.slice(0...25)
   end
+  
+  def self.top_games(page)
+    Rails.cache.fetch("top-games", expires_in: 10.seconds) do
+      games = force_top_games(page)
+      Kaminari::PaginatableArray.new(games.to_a,
+                                     limit: games.limit_value,
+                                     offset: games.offset_value,
+                                     total_count: games.total_count)
+    end
+  end
+  
+  def self.force_top_games(current_page)
+    Game.page(current_page)
+  end
 end
