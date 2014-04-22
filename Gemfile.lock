@@ -19,8 +19,6 @@ GEM
       activesupport (= 4.0.3)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activerecord-import (0.5.0)
-      activerecord (>= 3.0)
     activeresource (4.0.0)
       activemodel (~> 4.0)
       activesupport (~> 4.0)
@@ -221,7 +219,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-import
   animate-rails
   annotate
   backbone-on-rails

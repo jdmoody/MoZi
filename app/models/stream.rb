@@ -41,27 +41,20 @@ class Stream < ActiveRecord::Base
     
     # Updates database streams corresponding to those from twitch,
     # or creates a new stream
-    new_streams = []
-    streams.each do |stream|
-      if current_stream = Stream.find_by(channel_name: stream["channel"]["name"])
-        current_stream.update_attributes(viewers: stream["viewers"], 
-                                         status: stream["channel"]["status"],
-                                         follows: stream["channel"]["followers"],
-                                         game: stream["channel"]["game"].gsub("'", ""))
-      else
-        new_streams << Stream.new(
-          name: stream["channel"]["display_name"],
-          channel_name: stream["channel"]["name"],
-          status: stream["channel"]["status"],
-          views: stream["channel"]["views"],
-          follows: stream["channel"]["followers"],
-          logo: stream["channel"]["logo"],
-          game: stream["channel"]["game"].gsub("'", ""),
-          preview: stream["preview"]["medium"],
-          viewers: stream["viewers"]
-        )
+    connection = PG.connect(dbname: ENV['DATABASE_URL'] || 'mozi_dev_db')
+    Upsert.batch(connection, :streams) do |upsert|
+      streams.each do |stream|
+        upsert.row({name: stream["channel"]["display_name"]},
+                    channel_name: stream["channel"]["name"],
+                    status: stream["channel"]["status"],
+                    views: stream["channel"]["views"],
+                    follows: stream["channel"]["followers"],
+                    logo: stream["channel"]["logo"],
+                    game: stream["channel"]["game"].gsub("'", ""),
+                    preview: stream["preview"]["medium"],
+                    viewers: stream["viewers"],
+                    slug: stream["channel"]["display_name"])
       end
     end
-    Stream.import new_streams
   end
 end

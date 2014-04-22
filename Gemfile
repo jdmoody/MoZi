@@ -40,7 +40,6 @@ gem 'newrelic_rpm'
 gem 'gon'
 gem 'kaminari'
 gem 'thin'
-gem 'activerecord-import'
 gem 'redis-rails'
 gem 'upsert'
 
