@@ -42,6 +42,7 @@ gem 'kaminari'
 gem 'thin'
 gem 'activerecord-import'
 gem 'redis-rails'
+gem 'upsert'
 
 group :development do
   gem 'annotate'

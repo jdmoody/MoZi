@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
 	  name = "MoziGuest_#{rand(10000)}"
 	  guest_user = User.create(username: name, email: "#{name}#{rand(99)}@jdmozi.com")
 	  guest_user.save(validate: false)
-    guest_user.game_favorites.create(game_id: Game.all[1].id)
-    guest_user.game_favorites.create(game_id: Game.all[2].id)
-    guest_user.game_favorites.create(game_id: Game.all[3].id)
-    guest_user.game_favorites.create(game_id: Game.all[7].id)
-    guest_user.game_favorites.create(game_id: Game.all[5].id)
+    # guest_user.game_favorites.create(game_id: Game.all[1].id)
+    # guest_user.game_favorites.create(game_id: Game.all[2].id)
+    # guest_user.game_favorites.create(game_id: Game.all[3].id)
+    # guest_user.game_favorites.create(game_id: Game.all[7].id)
+    # guest_user.game_favorites.create(game_id: Game.all[5].id)
 	  redirect_to "#/games", status: :found
 	  guest_user
 	end
