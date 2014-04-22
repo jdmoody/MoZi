@@ -28,31 +28,18 @@ class Game < ActiveRecord::Base
     source: :user
   
   def self.refresh
-    Game.update_all("viewers = 0")
+    Game.update_all(viewers: 0)
     @games = Twitch.new().getTopGames(limit: 100)[:body]["top"]
-    # new_games = []
-    connection = PG.connect(dbname: 'mozi_dev_db')
+    connection = PG.connect(dbname: ENV['DATABASE_URL'])
     Upsert.batch(connection, :games) do |upsert|
       @games.each do |game|
-        # updated_games << Game.new(name: game["game"]["name"].gsub("'", ""),
-        #                           logo: game["game"]["logo"]["large"],
-        #                           box:  game["game"]["box"]["large"],
-        #                           viewers: game["viewers"])
-        # if current_game = Game.find_by(name: game["game"]["name"])
-        #   current_game.update_attributes(viewers: game["viewers"])
-        # else
-        #   new_games << Game.new(name: game["game"]["name"].gsub("'", ""),
-        #                         logo: game["game"]["logo"]["large"],
-        #                         box:  game["game"]["box"]["large"],
-        #                         viewers: game["viewers"])
-        # end
         upsert.row({name: game["game"]["name"].gsub("'", "")},
                     logo: game["game"]["logo"]["large"],
                     box:  game["game"]["box"]["large"],
-                    viewers: game["viewers"]).to_i
+                    viewers: game["viewers"])
       end
     end
-    # Game.import new_games
+    Game.find_each(&:save)
   end
   
   def ordered_stream_list
